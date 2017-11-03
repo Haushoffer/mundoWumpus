@@ -1,0 +1,1 @@
+[![Build Status](https://travis-ci.org/Haushoffer/mundoWumpus.svg?branch=develop)](https://travis-ci.org/Haushoffer/mundoWumpus)
