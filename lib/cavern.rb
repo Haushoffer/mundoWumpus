@@ -13,6 +13,7 @@ class Cavern
 		  	caveCounter=caveCounter+1
 		  end
 		end
+		$play_area[(sizex+1)/2][(sizey+1)/2].hostWumpus
 	end
 	def getCavern(row,column)
 		return $play_area[row][column]

@@ -37,4 +37,8 @@ describe Cavern do
 
 		expect(cavernita.getCavern(5,6).topNeighbor.caveNumber).to eq(46)
 	end
+	it 'el wumpus se encuentra al medio de las cavernas al iniciar el juego' do
+		cavernita=Cavern.new(9,8)
+		expect(cavernita.getCavern(5,4).isWumpusHere).to eq(true)
+	end
 end

@@ -22,7 +22,9 @@ class Cave
 	def assignRightNeighbor(newNighbor)
 		@rightNeighbor= newNighbor
 	end
-	def wumpus
+	def hostWumpus()
+		@isWumpusHere = true
+	end
 end
 
 
