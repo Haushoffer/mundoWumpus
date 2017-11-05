@@ -25,6 +25,9 @@ class Cave
 	def hostWumpus()
 		@isWumpusHere = true
 	end
+	def oustWumpus()
+		@isWumpusHere = false
+	end
 end
 
 

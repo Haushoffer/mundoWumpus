@@ -41,4 +41,26 @@ describe Cavern do
 		cavernita=Cavern.new(9,8)
 		expect(cavernita.getCavern(5,4).isWumpusHere).to eq(true)
 	end
+
+	it 'El wumpus se movio una posicion arriba' do
+		cavernita = Cavern.new(9,8)
+		cavernita.moveWumpusOnePosToTop
+		expect(cavernita.getCavern(5,3).isWumpusHere).to eq(true)
+	end
+	it 'El wumpus se movio una posicion abajo' do
+		cavernita = Cavern.new(9,8)
+		cavernita.moveWumpusOnePosToBottom
+		expect(cavernita.getCavern(5,5).isWumpusHere).to eq(true)
+	end
+	it 'El wumpus se movio una posicion a la izquierda' do
+		cavernita = Cavern.new(9,8)
+		cavernita.moveWumpusOnePosToLeft
+		expect(cavernita.getCavern(4,4).isWumpusHere).to eq(true)
+	end
+	it 'El wumpus se movio una posicion a la derecha' do
+		cavernita = Cavern.new(9,8)
+		cavernita.moveWumpusOnePosToRight
+		expect(cavernita.getCavern(6,4).isWumpusHere).to eq(true)
+	end
+
 end
