@@ -1,5 +1,5 @@
 class Cave
-	attr_accessor :topNeighbor,:bottomNeighbor,:leftNeighbor,:rightNeighbor,:caveNumber
+	attr_accessor :topNeighbor,:bottomNeighbor,:leftNeighbor,:rightNeighbor,:caveNumber,:isWumpusHere
 
 	def initialize(topNeighbor,bottomNeighbor,leftNeighbor,rightNeighbor,caveNumber)
 		@topNeighbor = topNeighbor
@@ -7,6 +7,7 @@ class Cave
 		@rightNeighbor = rightNeighbor
 		@leftNeighbor = leftNeighbor
 		@caveNumber = caveNumber
+		@isWumpusHere = false
 	end
 		
 	def assignBottomNeighbor(newNighbor)
@@ -21,6 +22,7 @@ class Cave
 	def assignRightNeighbor(newNighbor)
 		@rightNeighbor= newNighbor
 	end
+	def wumpus
 end
 
 
