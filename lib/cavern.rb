@@ -63,4 +63,35 @@ class Cavern
 		@wumpusX = @wumpusX + 1
 		$play_area[@wumpusX][@wumpusY].hostWumpus
 	end
+	def moveWumpusRandomly
+		newpos = rand(1..4)
+		if newpos == 1 #top
+			if($play_area[@wumpusX][@wumpusY].topNeighbor.nil?)
+				moveWumpusRandomly
+			else
+				moveWumpusOnePosToTop
+			end
+		end
+		if newpos == 2 #right
+			if($play_area[@wumpusX][@wumpusY].rightNeighbor.nil?)
+				moveWumpusRandomly
+			else
+				moveWumpusOnePosToRight
+			end
+		end
+		if newpos == 3 #bot
+			if($play_area[@wumpusX][@wumpusY].bottomNeighbor.nil?)
+				moveWumpusRandomly
+			else
+				moveWumpusOnePosToBottom
+			end
+		end
+		if newpos == 4 #left
+			if($play_area[@wumpusX][@wumpusY].leftNeighbor.nil?)
+				moveWumpusRandomly
+			else
+				moveWumpusOnePosToLeft
+			end
+		end
+	end
 end
