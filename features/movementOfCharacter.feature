@@ -1,6 +1,6 @@
 Feature:
 	Como jugador
-	Quiero moverme al Norte de una cueva
+	Quiero moverme al Norte, Sur, Este, Oeste de una cueva
 	Para cambiar de posicion
 
 Scenario:
@@ -8,3 +8,7 @@ Scenario:
 		When pulso el boton "JUGAR MAPA POR DEFECTO"
 		And pulso el boton "INICIO"
 		Then deberia mostrar el boton "Norte"
+		And deberia mostrar el boton "Sur"
+		And deberia mostrar el boton "Este"
+		And deberia mostrar el boton "Oeste"
+		And deberia mostrar el mensaje "Entraste a la cueva 55"
