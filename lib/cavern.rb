@@ -1,5 +1,6 @@
 require './lib/cave.rb'
 class Cavern
+	attr_accessor :wumpusX,:wumpusY
 	def initialize(sizex, sizey)
 	    $x_length = sizex
 	    $y_length = sizey
@@ -13,6 +14,9 @@ class Cavern
 		  	caveCounter=caveCounter+1
 		  end
 		end
+		@wumpusX = (sizex+1)/2
+		@wumpusY = (sizey+1)/2
+		$play_area[wumpusX][wumpusY].hostWumpus
 	end
 	def getCavern(row,column)
 		return $play_area[row][column]
@@ -38,5 +42,56 @@ class Cavern
 	end
 	def getWelcomeMessage()
 		return "Bienvenido al Mapa por Defecto"
+	end
+	def moveWumpusOnePosToTop
+		$play_area[@wumpusX][@wumpusY].oustWumpus
+		@wumpusY = @wumpusY - 1
+		$play_area[@wumpusX][@wumpusY].hostWumpus
+	end
+	def moveWumpusOnePosToBottom
+		$play_area[@wumpusX][@wumpusY].oustWumpus
+		@wumpusY = @wumpusY + 1
+		$play_area[@wumpusX][@wumpusY].hostWumpus
+	end
+	def moveWumpusOnePosToLeft
+		$play_area[@wumpusX][@wumpusY].oustWumpus
+		@wumpusX = @wumpusX - 1
+		$play_area[@wumpusX][@wumpusY].hostWumpus
+	end
+	def moveWumpusOnePosToRight
+		$play_area[@wumpusX][@wumpusY].oustWumpus
+		@wumpusX = @wumpusX + 1
+		$play_area[@wumpusX][@wumpusY].hostWumpus
+	end
+	def moveWumpusRandomly
+		newpos = rand(1..4)
+		if newpos == 1 #top
+			if($play_area[@wumpusX][@wumpusY].topNeighbor.nil?)
+				moveWumpusRandomly
+			else
+				moveWumpusOnePosToTop
+			end
+		end
+		if newpos == 2 #right
+			if($play_area[@wumpusX][@wumpusY].rightNeighbor.nil?)
+				moveWumpusRandomly
+			else
+				moveWumpusOnePosToRight
+			end
+		end
+		if newpos == 3 #bot
+			if($play_area[@wumpusX][@wumpusY].bottomNeighbor.nil?)
+				moveWumpusRandomly
+			else
+				moveWumpusOnePosToBottom
+			end
+		end
+		if newpos == 4 #left
+			if($play_area[@wumpusX][@wumpusY].leftNeighbor.nil?)
+				moveWumpusRandomly
+			else
+				moveWumpusOnePosToLeft
+			end
+		end
 	end
 end

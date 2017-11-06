@@ -34,4 +34,13 @@ describe Cave do
 	
 		expect(cave.rightNeighbor.caveNumber).to eq(5)
 	end
+	it 'devuelve false si el wumpus no se encuetra en la cueva' do
+		cave = Cave.new(nil,nil,nil,nil,10)
+		expect(cave.isWumpusHere).to eq(false)
+	end
+	it 'devuelve true si el wumpus se encuetra en la cueva' do
+		cave = Cave.new(nil,nil,nil,nil,10)
+		cave.hostWumpus
+		expect(cave.isWumpusHere).to eq(true)
+	end
 end
