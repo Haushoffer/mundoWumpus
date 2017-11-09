@@ -1,0 +1,54 @@
+<html>
+	<head>
+		<style type="text/css">
+			#console 
+			{
+    			background-color: lightblue;
+			}
+		</style>
+	</head>
+	<body>
+		<div>
+			<h2>MUNDO WUMPUS</h2>
+		</div>
+		<table style="width:100%">
+  			<tr>
+    			<th></th>
+    			<th></th> 
+    			<th></th>
+  			</tr>
+  			<tr>
+    			<td>
+    				<div>
+    					<% if @north %>
+ 							<form method="post" action="/toNorth">
+        						<button type="submit" name="Norte">Norte</button>
+							</form>
+						<% end %>
+						<% if @south %>
+ 							<form method="post" action="/toSouth">
+        						<button type="submit" name="Sur">Sur</button>
+							</form>
+						<% end %>
+						<% if @east %>
+ 							<form method="post" action="/toEast">
+        						<button type="submit" name="Este">Este</button>
+							</form>
+						<% end %>
+						<% if @west %>
+ 							<form method="post" action="/toWest">
+        						<button type="submit" name="Oeste">Oeste</button>
+							</form>
+						<% end %>
+					</div>
+    			</td>
+    			<td>
+    				<div id="console">
+    					<label>Entraste a la cueva <%= @mensaje %></label>
+    				</div>
+    			</td>
+    			<td>OBJECTS</td>
+  			</tr>
+		</table>
+	</body>
+</html>
