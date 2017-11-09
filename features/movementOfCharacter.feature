@@ -7,8 +7,6 @@ Scenario:
 		Given visito la pagina de inicio
 		When pulso el boton "JUGAR MAPA POR DEFECTO"
 		And pulso el boton "INICIO"
-		Then deberia mostrar el boton "Norte"
-		And deberia mostrar el boton "Sur"
+		Then deberia mostrar el boton "Sur"
 		And deberia mostrar el boton "Este"
-		And deberia mostrar el boton "Oeste"
-		And deberia mostrar el mensaje "Entraste a la cueva 55"
+		And deberia mostrar el mensaje "Entraste a la cueva 0"

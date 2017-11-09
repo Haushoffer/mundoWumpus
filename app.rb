@@ -5,12 +5,11 @@ require('./lib/character.rb')
 get '/' do	
 	$startWumpus=Cavern.new(10,10)
 	$startWumpus.generateNeighbors()
-	$character=Character.new($startWumpus.getCavern(5,5))
+	$character=Character.new($startWumpus.getCavern(0,0))
 	erb :start
 end	
 
 get '/play' do	
-	$startWumpus=Cavern.new(10,10)
 	@mensaje=$character.getNumberOfCavePositionated()
 	@north=$character.canGoNorth()
 	@south=$character.canGoSouth()
