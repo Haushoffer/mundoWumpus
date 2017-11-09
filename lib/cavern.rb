@@ -17,6 +17,7 @@ class Cavern
 		@wumpusX = (sizex+1)/2
 		@wumpusY = (sizey+1)/2
 		$play_area[wumpusX][wumpusY].hostWumpus
+		setSmellAround(@wumpusX,@wumpusY,true)
 	end
 	def getCavern(row,column)
 		return $play_area[row][column]
@@ -45,23 +46,54 @@ class Cavern
 	end
 	def moveWumpusOnePosToTop
 		$play_area[@wumpusX][@wumpusY].oustWumpus
+		setSmellAround(@wumpusX,@wumpusY,false)
 		@wumpusY = @wumpusY - 1
 		$play_area[@wumpusX][@wumpusY].hostWumpus
+		setSmellAround(@wumpusX,@wumpusY,true)
 	end
 	def moveWumpusOnePosToBottom
 		$play_area[@wumpusX][@wumpusY].oustWumpus
+		setSmellAround(@wumpusX,@wumpusY,false)
 		@wumpusY = @wumpusY + 1
 		$play_area[@wumpusX][@wumpusY].hostWumpus
+		setSmellAround(@wumpusX,@wumpusY,true)
 	end
 	def moveWumpusOnePosToLeft
 		$play_area[@wumpusX][@wumpusY].oustWumpus
+		setSmellAround(@wumpusX,@wumpusY,false)
 		@wumpusX = @wumpusX - 1
 		$play_area[@wumpusX][@wumpusY].hostWumpus
+		setSmellAround(@wumpusX,@wumpusY,true)
 	end
 	def moveWumpusOnePosToRight
 		$play_area[@wumpusX][@wumpusY].oustWumpus
+		setSmellAround(@wumpusX,@wumpusY,false)
 		@wumpusX = @wumpusX + 1
 		$play_area[@wumpusX][@wumpusY].hostWumpus
+		setSmellAround(@wumpusX,@wumpusY,true)
+	end
+	def setSmellAround(x,y,value)
+		if(x>0 && x<$x_length-1)then
+			$play_area[x+1][y].smell=value
+			$play_area[x-1][y].smell=value
+		else 
+			if(x==0)then
+				$play_area[x+1][y].smell=value
+			else
+				$play_area[x-1][y].smell=value	
+			end
+		end
+
+		if(y>0 && y<$y_length-1)then
+			$play_area[x][y+1].smell=value
+			$play_area[x][y-1].smell=value
+		else 
+			if(x==0)then
+				$play_area[x][y+1].smell=value
+			else
+				$play_area[x][y-1].smell=value	
+			end
+		end
 	end
 	def moveWumpusRandomly
 		newpos = rand(1..4)

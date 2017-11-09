@@ -43,4 +43,13 @@ describe Cave do
 		cave.hostWumpus
 		expect(cave.isWumpusHere).to eq(true)
 	end
+	it 'devuelve true si existe olor en la cueva' do
+		cave = Cave.new(nil,nil,nil,nil,10)
+		cave.smell=true
+		expect(cave.smell).to eq(true)
+	end
+	it 'devuelve false si no hay olor en la cueva' do
+		cave = Cave.new(nil,nil,nil,nil,10)
+		expect(cave.smell).to eq(false)
+	end
 end
