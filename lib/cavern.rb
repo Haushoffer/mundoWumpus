@@ -30,13 +30,10 @@ class Cavern
 		fillRightEdge()
 		for rows in 1..$x_length-2
 			for cols in 1..$y_length-2
-
-				if  (rows>=1 and rows<$x_length-1) and (cols>=1 and cols<$y_length-1)
-					$play_area[rows][cols].assignBottomNeighbor($play_area[rows+1][cols])
-					$play_area[rows][cols].assignRightNeighbor($play_area[rows][cols+1])
-					$play_area[rows][cols].assignTopNeighbor($play_area[rows-1][cols])
-					$play_area[rows][cols].assignLeftNeighbor($play_area[rows][cols-1])
-				end						
+				$play_area[rows][cols].assignBottomNeighbor($play_area[rows+1][cols])
+				$play_area[rows][cols].assignRightNeighbor($play_area[rows][cols+1])
+				$play_area[rows][cols].assignTopNeighbor($play_area[rows-1][cols])
+				$play_area[rows][cols].assignLeftNeighbor($play_area[rows][cols-1])
 			end
 		end				
 	end
@@ -86,32 +83,32 @@ class Cavern
 	def moveWumpusOnePosToTop
 		$play_area[@wumpusX][@wumpusY].oustWumpus
 		setSmellAround(@wumpusX,@wumpusY,false)
-		@wumpusY = @wumpusY - 1
+		@wumpusX = @wumpusX - 1
 		$play_area[@wumpusX][@wumpusY].hostWumpus
 		setSmellAround(@wumpusX,@wumpusY,true)
 	end
 	def moveWumpusOnePosToBottom
 		$play_area[@wumpusX][@wumpusY].oustWumpus
 		setSmellAround(@wumpusX,@wumpusY,false)
-		@wumpusY = @wumpusY + 1
+		@wumpusX = @wumpusX + 1
 		$play_area[@wumpusX][@wumpusY].hostWumpus
 		setSmellAround(@wumpusX,@wumpusY,true)
 	end
 	def moveWumpusOnePosToLeft
 		$play_area[@wumpusX][@wumpusY].oustWumpus
 		setSmellAround(@wumpusX,@wumpusY,false)
-		@wumpusX = @wumpusX - 1
+		@wumpusY = @wumpusY - 1
 		$play_area[@wumpusX][@wumpusY].hostWumpus
 		setSmellAround(@wumpusX,@wumpusY,true)
 	end
 	def moveWumpusOnePosToRight
 		$play_area[@wumpusX][@wumpusY].oustWumpus
 		setSmellAround(@wumpusX,@wumpusY,false)
-		@wumpusX = @wumpusX + 1
+		@wumpusY = @wumpusY + 1
 		$play_area[@wumpusX][@wumpusY].hostWumpus
 		setSmellAround(@wumpusX,@wumpusY,true)
 	end
-	def setSmellAround(x,y,value)
+	def setSmellAround(y,x,value)
 		if(x>0 && x<$x_length-1)then
 			$play_area[x+1][y].smell=value
 			$play_area[x-1][y].smell=value
