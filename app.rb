@@ -19,41 +19,81 @@ get '/play' do
 	@west=$character.canGoWest()
 	@smell=$character.caveOfPosition.smell
 	@numberOfArrows=$character.numberOfArrows
+	@wumpusvivo = $startWumpus.wumpuslife
 	erb :console
 end	
 
 post '/toNorth' do	
-	$character.moveNorth()
 	$startWumpus.moveWumpusRandomly
+	$character.moveNorth()
+	
 	$m="El wumpus se movio aleatoriamente"
 	redirect "/play"
 	
 end
 
-post '/toSouth' do	
+post '/toSouth' do
+	$startWumpus.moveWumpusRandomly	
 	$character.moveSouth()
-	$startWumpus.moveWumpusRandomly
+	
 	$m="El wumpus se movio aleatoriamente"
 	redirect "/play"
 	
 end
 
 post '/toEast' do	
-	$character.moveEast()
 	$startWumpus.moveWumpusRandomly
+	$character.moveEast()
+	
 	$m="El wumpus se movio aleatoriamente"
 	redirect "/play"
 	
 end
 
 post '/toWest' do	
-	$character.moveWest()
 	$startWumpus.moveWumpusRandomly
+	$character.moveWest()
+	
 	$m="El wumpus se movio aleatoriamente"
 	redirect "/play"
 	
 end
-
+post '/shootToTop' do
+	$character.shootArrow()
+	if($character.caveOfPosition.topNeighbor.isWumpusHere)
+		$startWumpus.killWumpus
+	else	
+		$character.caveOfPosition.topNeighbor.assignArrow()
+	end
+	redirect "/play"
+end
+post '/shootToBottom' do
+	$character.shootArrow()
+	if($character.caveOfPosition.bottomNeighbor.isWumpusHere)
+		$startWumpus.killWumpus
+	else	
+		$character.caveOfPosition.bottomNeighbor.assignArrow()
+	end
+	redirect "/play"
+end
+post '/shootToLeft' do
+	$character.shootArrow()
+	if($character.caveOfPosition.leftNeighbor.isWumpusHere)
+		$startWumpus.killWumpus
+	else	
+		$character.caveOfPosition.leftNeighbor.assignArrow()
+	end
+	redirect "/play"
+end
+post '/shootToRight' do
+	$character.shootArrow()
+	if($character.caveOfPosition.rightNeighbor.isWumpusHere)
+		$startWumpus.killWumpus
+	else	
+		$character.caveOfPosition.rightNeighbor.assignArrow()
+	end
+	redirect "/play"
+end
 post '/start' do	
 	@mensaje=$startWumpus.getWelcomeMessage()
 	erb :defaultMap
