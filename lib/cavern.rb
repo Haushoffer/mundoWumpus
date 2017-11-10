@@ -109,28 +109,25 @@ class Cavern
 		$play_area[@wumpusX][@wumpusY].hostWumpus
 		setSmellAround(@wumpusX,@wumpusY,true)
 	end
-	def setSmellAround(y,x,value)
-		if(x>0 && x<$x_length-1)then
-			$play_area[x+1][y].smell=value
+	def setSmellAround(x,y,value)
+		if(x>0 && x<$x_length-1)
 			$play_area[x-1][y].smell=value
-		else 
-			if(x==0)then
-				$play_area[x+1][y].smell=value
-			else
-				$play_area[x-1][y].smell=value	
-			end
+			$play_area[x+1][y].smell=value
+		elsif (x==0)
+			$play_area[x+1][y].smell=value
+		else
+			$play_area[x-1][y].smell=value
 		end
 
-		if(y>0 && y<$y_length-1)then
-			$play_area[x][y+1].smell=value
+		if(y>0 && y<$y_length-1)
 			$play_area[x][y-1].smell=value
-		else 
-			if(x==0)then
-				$play_area[x][y+1].smell=value
-			else
-				$play_area[x][y-1].smell=value	
-			end
+			$play_area[x][y+1].smell=value
+		elsif (y==0)
+			$play_area[x][y+1].smell=value
+		else
+			$play_area[x][y-1].smell=value
 		end
+
 	end
 	def moveWumpusRandomly
 		newpos = rand(1..4)
