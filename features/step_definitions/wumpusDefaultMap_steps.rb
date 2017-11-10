@@ -3,9 +3,13 @@ Given("visito la pagina de inicio") do
 end
 
 Then(/^deberia mostrar el mensaje "(.*)"$/) do |mensajeInicial|
-  last_response.body.should =~ /#{mensajeInicial}/m
+  response.should have_content =~ /#{mensajeInicial}/m
 end
 
 When (/^pulso el boton "(.*)"$/) do |boton|
   click_button(boton)
+end
+When (/^pulso el boton de direccion "(.*)"$/) do |boton|
+  click_button(boton)
+  follow_redirect!
 end

@@ -1,3 +1,3 @@
 Then(/^deberia mostrar el boton "(.*)"$/) do |nombreBoton|
-  last_response.body.should =~ /#{nombreBoton}/m
+  response.should have_content =~ /#{nombreBoton}/m
 end
