@@ -55,6 +55,9 @@ class Character
 	def pickArrow()
 		@numberOfArrows=@numberOfArrows+1
 	end
+	def shootArrow()
+		@numberOfArrows=@numberOfArrows-1
+	end
 end
 
 
