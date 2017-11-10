@@ -34,4 +34,16 @@ describe Cavern do
 		expect(character.canGoWest()).to be true
 		expect(character.canGoEast()).to be true
 	end
+	it 'devolver 0 a la cantidad de flechas por defecto' do
+		cavernita = Cavern.new(10,10)
+		cavernita.generateNeighbors()
+		character= Character.new(cavernita.getCavern(0,0))
+		expect(character.numberOfArrows).to eq(0)
+	end
+	it 'devolver 1 al recojer una nueva flecha' do
+		cavernita = Cavern.new(10,10)
+		cavernita.generateNeighbors()
+		character= Character.new(cavernita.getCavern(0,0))
+		expect(character.pickArrow()).to eq(1)
+	end
 end

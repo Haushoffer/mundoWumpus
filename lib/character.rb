@@ -1,9 +1,10 @@
 require './lib/cave.rb'
 class Character
-	attr_accessor :caveOfPosition
+	attr_accessor :caveOfPosition, :numberOfArrows
 
 	def initialize(caveOfPosition)
 		@caveOfPosition = caveOfPosition
+		@numberOfArrows=0
 	end
 
 	def canGoNorth()
@@ -41,7 +42,9 @@ class Character
 	def getNumberOfCavePositionated()
 		@caveOfPosition.caveNumber
 	end
-
+	def pickArrow()
+		@numberOfArrows=@numberOfArrows+1
+	end
 end
 
 
