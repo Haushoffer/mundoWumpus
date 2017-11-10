@@ -53,6 +53,6 @@ describe Cavern do
 		character.pickArrow
 		character.shootArrow
 		expect(character.numberOfArrows).to eq(0)
-
 	end
+	
 end

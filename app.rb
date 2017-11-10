@@ -3,7 +3,7 @@ require('./lib/cavern.rb')
 require('./lib/character.rb')
 
 get '/' do	
-	$startWumpus=Cavern.new(10,10)
+	$startWumpus=Cavern.new(3,3)
 	$startWumpus.generateNeighbors()
 	$character=Character.new($startWumpus.getCavern(0,0))
 	$m=" "
@@ -27,7 +27,7 @@ post '/toNorth' do
 	$startWumpus.moveWumpusRandomly
 	$character.moveNorth()
 	
-	$m="El wumpus se movio aleatoriamente"
+	$m="El wumpus se movio"
 	redirect "/play"
 	
 end
@@ -36,7 +36,7 @@ post '/toSouth' do
 	$startWumpus.moveWumpusRandomly	
 	$character.moveSouth()
 	
-	$m="El wumpus se movio aleatoriamente"
+	$m="El wumpus se movio"
 	redirect "/play"
 	
 end
@@ -45,7 +45,7 @@ post '/toEast' do
 	$startWumpus.moveWumpusRandomly
 	$character.moveEast()
 	
-	$m="El wumpus se movio aleatoriamente"
+	$m="El wumpus se movio"
 	redirect "/play"
 	
 end
@@ -54,7 +54,7 @@ post '/toWest' do
 	$startWumpus.moveWumpusRandomly
 	$character.moveWest()
 	
-	$m="El wumpus se movio aleatoriamente"
+	$m="El wumpus se movio"
 	redirect "/play"
 	
 end

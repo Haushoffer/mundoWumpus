@@ -89,7 +89,7 @@ describe Cavern do
 		cavernita.moveWumpusRandomly
 		expect(cavernita.getCavern(5,4).isWumpusHere).to eq(false)
 	end
-	it 'El wumpues murio' do
+	it 'El wumpus murio' do
 		cavernita = Cavern.new(9,8)
 		cavernita.generateNeighbors()
 		cavernita.killWumpus
