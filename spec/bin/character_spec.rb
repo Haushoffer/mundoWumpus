@@ -46,4 +46,13 @@ describe Cavern do
 		character= Character.new(cavernita.getCavern(0,0))
 		expect(character.pickArrow()).to eq(1)
 	end
+	it 'disparar flecha' do
+		cavernita = Cavern.new(10,10)
+		cavernita.generateNeighbors()
+		character= Character.new(cavernita.getCavern(0,0))
+		character.pickArrow
+		character.shootArrow
+		expect(character.numberOfArrows).to eq(0)
+
+	end
 end

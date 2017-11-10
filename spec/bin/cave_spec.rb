@@ -52,4 +52,9 @@ describe Cave do
 		cave = Cave.new(nil,nil,nil,nil,10)
 		expect(cave.smell).to eq(false)
 	end
+	it 'aignar flecha a una caverna' do
+		cave = Cave.new(nil,nil,nil,nil,10)
+		cave.assignArrow()
+		expect(cave.arrow).to eq(true)
+	end
 end

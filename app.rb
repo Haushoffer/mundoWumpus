@@ -62,6 +62,7 @@ post '/shootToTop' do
 	$character.shootArrow()
 	if($character.caveOfPosition.topNeighbor.isWumpusHere)
 		$startWumpus.killWumpus
+		
 	else	
 		$character.caveOfPosition.topNeighbor.assignArrow()
 	end
