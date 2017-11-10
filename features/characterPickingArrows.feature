@@ -7,4 +7,4 @@ Scenario:
 	Given visito la pagina de inicio
 		When pulso el boton "JUGAR MAPA POR DEFECTO"
 		And pulso el boton "INICIO"
-		Then deberia mostrar la cantidad de flechas igual a "0"
+		Then deberia mostrar la cantidad de "Flechas: 0"
