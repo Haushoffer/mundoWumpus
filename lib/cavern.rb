@@ -29,7 +29,7 @@ class Cavern
 		fillLeftEdge()
 		fillRightEdge()
 		for rows in 1..$x_length-2
-			for cols in 0..$y_length-2
+			for cols in 1..$y_length-2
 
 				if  (rows>=1 and rows<$x_length-1) and (cols>=1 and cols<$y_length-1)
 					$play_area[rows][cols].assignBottomNeighbor($play_area[rows+1][cols])
