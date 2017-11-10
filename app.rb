@@ -6,11 +6,13 @@ get '/' do
 	$startWumpus=Cavern.new(10,10)
 	$startWumpus.generateNeighbors()
 	$character=Character.new($startWumpus.getCavern(0,0))
+	$m=" "
 	erb :start
 end	
 
 get '/play' do	
 	@mensaje=$character.getNumberOfCavePositionated()
+	$m=$m + ""
 	@north=$character.canGoNorth()
 	@south=$character.canGoSouth()
 	@east=$character.canGoEast()
@@ -21,22 +23,34 @@ end
 
 post '/toNorth' do	
 	$character.moveNorth()
+	$startWumpus.moveWumpusRandomly
+	$m="El wumpus se movio aleatoriamente"
 	redirect "/play"
+	
 end
 
 post '/toSouth' do	
 	$character.moveSouth()
+	$startWumpus.moveWumpusRandomly
+	$m="El wumpus se movio aleatoriamente"
 	redirect "/play"
+	
 end
 
 post '/toEast' do	
 	$character.moveEast()
+	$startWumpus.moveWumpusRandomly
+	$m="El wumpus se movio aleatoriamente"
 	redirect "/play"
+	
 end
 
 post '/toWest' do	
 	$character.moveWest()
+	$startWumpus.moveWumpusRandomly
+	$m="El wumpus se movio aleatoriamente"
 	redirect "/play"
+	
 end
 
 post '/start' do	
