@@ -12,6 +12,7 @@ class Cave
 		@arrow = false
 	end
 		
+
 	def assignBottomNeighbor(newNighbor)
 	 	@bottomNeighbor = newNighbor
 	end 	

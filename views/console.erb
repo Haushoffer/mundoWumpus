@@ -16,7 +16,8 @@
     			<th></th>
     			<th></th> 
     			<th></th>
-  			</tr>
+			  </tr>
+			<% if @wumpusvivo %> 
   			<tr>
     			<td>
     				<div>
@@ -25,21 +26,42 @@
 								<button type="submit" name="Norte">Norte</button>
 								
 							</form>
+							<% if @numberOfArrows>=1 %>
+								<form method="post" action="/shootToTop">
+								<button type="submit" name="shootTop">disparar al norte</button>
+								</form>
+							<%end%>
 						<% end %>
 						<% if @south %>
  							<form method="post" action="/toSouth">
         						<button type="submit" name="Sur">Sur</button>
 							</form>
+							<% if @numberOfArrows>=1 %>
+								<form method="post" action="/shootToBottom">
+								<button type="submit" name="shootBot">disparar al sur</button>
+								
+								</form>
+							<% end %>
 						<% end %>
 						<% if @east %>
  							<form method="post" action="/toEast">
         						<button type="submit" name="Este">Este</button>
 							</form>
+							<% if @numberOfArrows>=1 %>
+								<form method="post" action="/shootToRight">
+								<button type="submit" name="shootRight">disparar al este</button>
+								</form>
+							<% end %>
 						<% end %>
 						<% if @west %>
  							<form method="post" action="/toWest">
         						<button type="submit" name="Oeste">Oeste</button>
 							</form>
+							<% if @numberOfArrows>=1 %>
+								<form method="post" action="/shootToLeft">
+								<button type="submit" name="shootLeft">disparar al oeste</button>
+								</form>
+							<% end %>
 						<% end %>
 						
 					</div>
@@ -59,7 +81,10 @@
     			<td>
     				<label>Flechas: <%= @numberOfArrows %></label>
     			</td>
-  			</tr>
+			  </tr>
+			<% else %>
+				<h2>Gano!!!!</h2>
+			<% end %>
 		</table>
 	</body>
 </html>

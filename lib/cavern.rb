@@ -1,10 +1,11 @@
 require './lib/cave.rb'
 class Cavern
-	attr_accessor :wumpusX,:wumpusY
+	attr_accessor :wumpusX,:wumpusY,:wumpuslife
 	def initialize(sizex, sizey)
 	    $x_length = sizex
 	    $y_length = sizey
-	    $play_area = []
+		$play_area = []
+		@wumpuslife = true
 	    #initialize dead cells
 	    caveCounter=0
 	    $x_length.times do |x|
@@ -165,4 +166,8 @@ class Cavern
 			end
 		end
 	end
+	def killWumpus
+		@wumpuslife = false
+	end
+
 end
