@@ -18,6 +18,7 @@ class Cavern
 		@wumpusY = (sizey+1)/2
 		$play_area[wumpusX][wumpusY].hostWumpus
 		setSmellAround(@wumpusX,@wumpusY,true)
+		$play_area[1][1].assignArrow()
 	end
 	def getCavern(row,column)
 		return $play_area[row][column]

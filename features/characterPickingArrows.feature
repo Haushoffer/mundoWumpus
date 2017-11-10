@@ -5,6 +5,22 @@ Feature:
 
 Scenario:
 	Given visito la pagina de inicio
-		When pulso el boton "JUGAR MAPA POR DEFECTO"
-		And pulso el boton "INICIO"
-		Then deberia mostrar la cantidad de "Flechas: 0"
+	When pulso el boton "JUGAR MAPA POR DEFECTO"
+	And pulso el boton "INICIO"
+	Then deberia mostrar la cantidad de "Flechas: 0"
+Scenario:
+	Given visito la pagina de inicio
+	When pulso el boton "JUGAR MAPA POR DEFECTO"
+	And pulso el boton "INICIO"
+	And pulso el boton de direccion "Este"
+	And pulso el boton de direccion "Sur"
+	Then deberia mostrar la cantidad de "Flechas: 1"
+Scenario:
+	Given visito la pagina de inicio
+	When pulso el boton "JUGAR MAPA POR DEFECTO"
+	And pulso el boton "INICIO"
+	And pulso el boton de direccion "Este"
+	And pulso el boton de direccion "Sur"
+	And pulso el boton de direccion "Norte"
+	And pulso el boton de direccion "Sur"
+	Then deberia mostrar la cantidad de "Flechas: 1"

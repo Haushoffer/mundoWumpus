@@ -8,18 +8,22 @@ class Character
 	end
 
 	def canGoNorth()
+		theCaveHasAnArrow()
 	 	@caveOfPosition.topNeighbor != nil
 	end 
 
 	def canGoSouth()
+		theCaveHasAnArrow()
 		@caveOfPosition.bottomNeighbor != nil
 	end
 
 	def canGoEast()
+		theCaveHasAnArrow()
 		@caveOfPosition.rightNeighbor != nil
 	end
 
 	def canGoWest()
+		theCaveHasAnArrow()
 		@caveOfPosition.leftNeighbor != nil
 	end
 
@@ -41,6 +45,12 @@ class Character
 
 	def getNumberOfCavePositionated()
 		@caveOfPosition.caveNumber
+	end
+	def theCaveHasAnArrow()
+		if(@caveOfPosition.thereIsAnArrowHere()==true)
+			pickArrow()
+			@caveOfPosition.arrowPicked()
+		end
 	end
 	def pickArrow()
 		@numberOfArrows=@numberOfArrows+1
