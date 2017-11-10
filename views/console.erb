@@ -45,6 +45,10 @@
     			<td>
     				<div id="console">
     					<label>Entraste a la cueva <%= @mensaje %></label>
+    					<br>
+    					<% if @smell %>
+ 							<label>Se siente un olor fetido en este cuarto</label>
+						<% end %>
     				</div>
     			</td>
     			<td>OBJECTS</td>

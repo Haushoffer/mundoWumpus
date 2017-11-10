@@ -15,6 +15,7 @@ get '/play' do
 	@south=$character.canGoSouth()
 	@east=$character.canGoEast()
 	@west=$character.canGoWest()
+	@smell=$character.caveOfPosition.smell
 	erb :console
 end	
 
