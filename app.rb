@@ -3,7 +3,7 @@ require('./lib/cavern.rb')
 require('./lib/character.rb')
 
 get '/' do	
-	$startWumpus=Cavern.new(3,3)
+	$startWumpus=Cavern.new(10,10)
 	$startWumpus.generateNeighbors()
 	$character=Character.new($startWumpus.getCavern(0,0))
 	$m=" "
