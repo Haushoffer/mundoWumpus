@@ -1,7 +1,7 @@
 require 'sinatra'
 require('./lib/cavern.rb')
 require('./lib/character.rb')
-
+class App < Sinatra::Base
 get '/' do	
 	$startWumpus=Cavern.new(10,10)
 	$startWumpus.generateNeighbors()
@@ -9,7 +9,9 @@ get '/' do
 	$m=" "
 	erb :start
 end	
+end
 
+class App < Sinatra::Base
 get '/play' do	
 	@mensaje=$character.getNumberOfCavePositionated()
 	$m=$m + ""
@@ -22,7 +24,8 @@ get '/play' do
 	@wumpusvivo = $startWumpus.wumpuslife
 	erb :console
 end	
-
+end
+class App < Sinatra::Base
 post '/toNorth' do	
 	$startWumpus.moveWumpusRandomly
 	$character.moveNorth()
@@ -31,7 +34,8 @@ post '/toNorth' do
 	redirect "/play"
 	
 end
-
+end
+class App < Sinatra::Base
 post '/toSouth' do
 	$startWumpus.moveWumpusRandomly	
 	$character.moveSouth()
@@ -40,7 +44,9 @@ post '/toSouth' do
 	redirect "/play"
 	
 end
+end
 
+class App < Sinatra::Base
 post '/toEast' do	
 	$startWumpus.moveWumpusRandomly
 	$character.moveEast()
@@ -49,7 +55,8 @@ post '/toEast' do
 	redirect "/play"
 	
 end
-
+end
+class App < Sinatra::Base
 post '/toWest' do	
 	$startWumpus.moveWumpusRandomly
 	$character.moveWest()
@@ -58,6 +65,8 @@ post '/toWest' do
 	redirect "/play"
 	
 end
+end
+class App < Sinatra::Base
 post '/shootToTop' do
 	$character.shootArrow()
 	if($character.caveOfPosition.topNeighbor.isWumpusHere)
@@ -68,6 +77,8 @@ post '/shootToTop' do
 	end
 	redirect "/play"
 end
+end
+class App < Sinatra::Base
 post '/shootToBottom' do
 	$character.shootArrow()
 	if($character.caveOfPosition.bottomNeighbor.isWumpusHere)
@@ -77,6 +88,8 @@ post '/shootToBottom' do
 	end
 	redirect "/play"
 end
+end
+class App < Sinatra::Base
 post '/shootToLeft' do
 	$character.shootArrow()
 	if($character.caveOfPosition.leftNeighbor.isWumpusHere)
@@ -86,6 +99,8 @@ post '/shootToLeft' do
 	end
 	redirect "/play"
 end
+end
+class App < Sinatra::Base
 post '/shootToRight' do
 	$character.shootArrow()
 	if($character.caveOfPosition.rightNeighbor.isWumpusHere)
@@ -95,8 +110,10 @@ post '/shootToRight' do
 	end
 	redirect "/play"
 end
+end
+class App < Sinatra::Base
 post '/start' do	
 	@mensaje=$startWumpus.getWelcomeMessage()
 	erb :defaultMap
 end
-
+end
