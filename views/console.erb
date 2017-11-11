@@ -28,49 +28,28 @@
 	      <div class="row">
 	      	<% if @wumpusvivo %> 
 	        <div class="col-md-4">
-	        	<center><h2>DIRECCION-DISPARAR</h2></center>
+	        	<center><h2>DIRECCION</h2></center>
 		          <div>
 	    					<% if @north %>
 	 							<form method="post" action="/toNorth">
 									<button type="submit" name="Norte">Norte</button>
 									
 								</form>
-								<% if @numberOfArrows>=1 %>
-									<form method="post" action="/shootToTop">
-									<button type="submit" name="shootTop">disparar al norte</button>
-									</form>
-								<%end%>
 							<% end %>
 							<% if @south %>
 	 							<form method="post" action="/toSouth">
 	        						<button type="submit" name="Sur">Sur</button>
 								</form>
-								<% if @numberOfArrows>=1 %>
-									<form method="post" action="/shootToBottom">
-									<button type="submit" name="shootBot">disparar al sur</button>
-									
-									</form>
-								<% end %>
 							<% end %>
 							<% if @east %>
 	 							<form method="post" action="/toEast">
 	        						<button type="submit" name="Este">Este</button>
 								</form>
-								<% if @numberOfArrows>=1 %>
-									<form method="post" action="/shootToRight">
-									<button type="submit" name="shootRight">disparar al este</button>
-									</form>
-								<% end %>
 							<% end %>
 							<% if @west %>
 	 							<form method="post" action="/toWest">
 	        						<button type="submit" name="Oeste">Oeste</button>
 								</form>
-								<% if @numberOfArrows>=1 %>
-									<form method="post" action="/shootToLeft">
-									<button type="submit" name="shootLeft">disparar al oeste</button>
-									</form>
-								<% end %>
 							<% end %>						
 					</div>
 	        </div>
@@ -91,11 +70,45 @@
 	            <center><h2>ITEMS</h2></center>
 	         		 <label>Flechas: <%= @numberOfArrows %></label>
 	        </div>
-	        <% else %>
-				<h2>Gano!!!!</h2>
-			<% end %>
+	    
      </div>
-	<body>
-	
-	</body>
+      <div class="container">
+	      <div class="row">
+	        <div class="col-md-4">
+	        	<center><h2>DISPARAR</h2></center>
+		          <div>
+	    					<% if @north %>
+								<% if @numberOfArrows>=1 %>
+									<form method="post" action="/shootToTop">
+										<button type="submit" name="shootTop">disparar al norte</button>
+									</form>
+								<%end%>
+							<% end %>
+							<% if @south %>
+								<% if @numberOfArrows>=1 %>
+									<form method="post" action="/shootToBottom">
+										<button type="submit" name="shootBot">disparar al sur</button>
+									</form>
+								<% end %>
+							<% end %>
+							<% if @east %>
+								<% if @numberOfArrows>=1 %>
+									<form method="post" action="/shootToRight">
+										<button type="submit" name="shootRight">disparar al este</button>
+									</form>
+								<% end %>
+							<% end %>
+							<% if @west %>
+								<% if @numberOfArrows>=1 %>
+									<form method="post" action="/shootToLeft">
+										<button type="submit" name="shootLeft">disparar al oeste</button>
+									</form>
+								<% end %>
+							<% end %>						
+					</div>
+	        </div>	    
+     </div>
+    <% else %>
+			<h2>Gano!!!!</h2>
+	<% end %>
 </html>
