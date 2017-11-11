@@ -1,7 +1,7 @@
 require 'sinatra'
 require('./lib/cavern.rb')
 require('./lib/character.rb')
-
+class App < Sinatra::Base
 get '/' do	
 	$startWumpus=Cavern.new(10,10)
 	$startWumpus.generateNeighbors()
@@ -9,6 +9,7 @@ get '/' do
 	$m=" "
 	erb :start
 end	
+end
 
 get '/play' do	
 	@mensaje=$character.getNumberOfCavePositionated()
