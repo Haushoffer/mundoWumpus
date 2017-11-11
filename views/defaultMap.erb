@@ -1,12 +1,29 @@
-<center>
-	</form><br><br>
-    <h2><%= @mensaje %></h2>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <form method="get" action="/play">
-    	<button type="submit" name="INICIO">INICIO</button>
-	</form>
-<center>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="shortcut icon" href="/favicon.ico" />
+<header>
+	<nav class="navbar navbar-inverse">
+	    <div class="container-fluid">
+	        <div class="navbar-header">
+	            <a class="navbar-brand" href="/"><mark>MUNDO WUMPUS</mark></a>
+	        </div>
+	        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+	            <ul class="nav navbar-nav navbar-right">
+	                <li>
+	                    <h1>MULTIVERSE</h1>
+	                </li>
+	            </ul>
+	        </div>
+	    </div>
+	</nav>
+</header>
+<body>
+	<center>
+		<div class="jumbotron">
+	        <h3><%= @mensaje %></h>
+	        <form method="get" action="/play">
+		    	<button type="submit"  class="btn btn-success" name="INICIO">INICIO</button>
+			</form>
+        </div>	
+	</center>
+</body>
