@@ -1,29 +1,30 @@
 require './lib/cave.rb'
 class Character
-	attr_accessor :caveOfPosition, :numberOfArrows
+	attr_accessor :caveOfPosition, :numberOfArrows, :numberOfSpray
 
 	def initialize(caveOfPosition)
 		@caveOfPosition = caveOfPosition
 		@numberOfArrows=0
+		@numberOfSpray=0
 	end
 
 	def canGoNorth()
-		theCaveHasAnArrow()
+		theCaveHasAnArrowOrASpray()
 	 	@caveOfPosition.topNeighbor != nil
 	end 
 
 	def canGoSouth()
-		theCaveHasAnArrow()
+		theCaveHasAnArrowOrASpray()
 		@caveOfPosition.bottomNeighbor != nil
 	end
 
 	def canGoEast()
-		theCaveHasAnArrow()
+		theCaveHasAnArrowOrASpray()
 		@caveOfPosition.rightNeighbor != nil
 	end
 
 	def canGoWest()
-		theCaveHasAnArrow()
+		theCaveHasAnArrowOrASpray()
 		@caveOfPosition.leftNeighbor != nil
 	end
 
@@ -46,10 +47,14 @@ class Character
 	def getNumberOfCavePositionated()
 		@caveOfPosition.caveNumber
 	end
-	def theCaveHasAnArrow()
+	def theCaveHasAnArrowOrASpray()
 		if(@caveOfPosition.thereIsAnArrowHere()==true)
 			pickArrow()
 			@caveOfPosition.arrowPicked()
+		end
+		if(@caveOfPosition.thereIsASprayHere()==true)
+			pickSpray()
+			@caveOfPosition.sprayPicked()
 		end
 	end
 	def pickArrow()
@@ -57,6 +62,12 @@ class Character
 	end
 	def shootArrow()
 		@numberOfArrows=@numberOfArrows-1
+	end
+	def pickSpray()
+		@numberOfSpray=@numberOfSpray+1
+	end
+	def useSpray()
+		@numberOfSpray=@numberOfSpray-1
 	end
 end
 
