@@ -19,7 +19,7 @@ get '/play' do
 	erb :console
 end	
 get '/configureMap' do
-	erb :configureMAP
+	erb :configureMap
 end
 post '/configureMap' do
 	$numberOfCaves = params[:numberOfCaves].to_i
