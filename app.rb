@@ -2,13 +2,10 @@ require 'sinatra'
 require('./lib/cavern.rb')
 require('./lib/character.rb')
 get '/' do	
-	$startWumpus=Cavern.new(10,10)
-	$startWumpus.generateNeighbors()
-	$character=Character.new($startWumpus.getCavern(0,0))
 	$m=" "
 	erb :start
 end	
-get '/play' do	
+get '/play' do
 	@mensaje=$character.getNumberOfCavePositionated()
 	$m=$m + ""
 	@north=$character.canGoNorth()
@@ -17,9 +14,26 @@ get '/play' do
 	@west=$character.canGoWest()
 	@smell=$character.caveOfPosition.smell
 	@numberOfArrows=$character.numberOfArrows
+	@numberOfSpray=$character.numberOfSpray
 	@wumpusvivo = $startWumpus.wumpuslife
 	erb :console
 end	
+get '/configureMap' do
+	erb :configureMAP
+end
+post '/configureMap' do
+	$numberOfCaves = params[:numberOfCaves].to_i
+	if($numberOfCaves==nil or $numberOfCaves<=0)
+		$startWumpus=Cavern.new(10,10)
+	else
+		$numberOfCaves=$numberOfCaves/2
+		$startWumpus=Cavern.new($numberOfCaves,$numberOfCaves)
+	end
+	$startWumpus.generateNeighbors()
+	$character=Character.new($startWumpus.getCavern(0,0))
+    @mensaje="Bienvenido al Mapa Personalizado"
+	erb :defaultMap
+end
 post '/toNorth' do	
 	$startWumpus.moveWumpusRandomly
 	$character.moveNorth()
@@ -91,8 +105,13 @@ post '/shootToRight' do
 	end
 	redirect "/play"
 end
-post '/start' do	
-	@mensaje=$startWumpus.getWelcomeMessage()
+
+post '/start' do		
+	$startWumpus=Cavern.new(10,10)
+	$startWumpus.generateNeighbors()
+	$character=Character.new($startWumpus.getCavern(0,0))
+    @mensaje="Bienvenido al Mapa por Defecto"
 	erb :defaultMap
 end
+
 

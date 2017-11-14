@@ -19,12 +19,11 @@
 </header>
 <body>
 	<center>
-		<form method="get" action="/configureMap">
-	    	<button type="submit" class="btn btn-success" name="CONFIGURAR MAPA">CONFIGURAR MAPA</button>
+		<form method="post" action="/configureMap">
+		    <label>Cantidad de cuevas: </label>
+			<input type="text" name="numberOfCaves" pattern="[0-9].{0,}" required="required" oninvalid="setCustomValidity('Ingrese un numero valido de cuevas')"
+    onchange="try{setCustomValidity('')}catch(e){}" />
+	    	<button type="submit" class="btn btn-success" name="CONFIRMAR CONFIGURACION">CONFIRMAR CONFIGURACION</button>
 		</form>
-		<form method="post" action="/start">
-	    	<button type="submit" class="btn btn-success" name="JUGAR MAPA POR DEFECTO">JUGAR MAPA POR DEFECTO</button>
-		</form>
-
 	</center>
 </body>
