@@ -48,6 +48,9 @@ class Cave
 	def assignSpray()
 		@spray = true
 	end
+	def setSmell(v)
+		@smell = v
+	end
 end
 
 

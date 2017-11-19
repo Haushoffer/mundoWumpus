@@ -1,8 +1,10 @@
 require 'sinatra'
 require('./lib/cavern.rb')
 require('./lib/character.rb')
+require('./lib/wumpus.rb')
 get '/' do	
 	$m=" "
+	
 	erb :start
 end	
 get '/play' do
@@ -15,7 +17,7 @@ get '/play' do
 	@smell=$character.caveOfPosition.smell
 	@numberOfArrows=$character.numberOfArrows
 	@numberOfSpray=$character.numberOfSpray
-	@wumpusvivo = $startWumpus.wumpuslife
+	@wumpusvivo = $wumpus.wumpusAlive
 	erb :console
 end	
 get '/configureMap' do
@@ -35,7 +37,7 @@ post '/configureMap' do
 	erb :defaultMap
 end
 post '/toNorth' do	
-	$startWumpus.moveWumpusRandomly
+	$wumpus.moveWumpusRandomly
 	$character.moveNorth()
 	
 	$m="El wumpus se movio"
@@ -43,7 +45,7 @@ post '/toNorth' do
 	
 end
 post '/toSouth' do
-	$startWumpus.moveWumpusRandomly	
+	$wumpus.moveWumpusRandomly	
 	$character.moveSouth()
 	
 	$m="El wumpus se movio"
@@ -51,7 +53,7 @@ post '/toSouth' do
 	
 end
 post '/toEast' do	
-	$startWumpus.moveWumpusRandomly
+	$wumpus.moveWumpusRandomly
 	$character.moveEast()
 	
 	$m="El wumpus se movio"
@@ -60,7 +62,7 @@ post '/toEast' do
 end
 
 post '/toWest' do	
-	$startWumpus.moveWumpusRandomly
+	$wumpus.moveWumpusRandomly
 	$character.moveWest()
 	
 	$m="El wumpus se movio"
@@ -70,7 +72,7 @@ end
 post '/shootToTop' do
 	$character.shootArrow()
 	if($character.caveOfPosition.topNeighbor.isWumpusHere)
-		$startWumpus.killWumpus
+		$wumpus.killWumpus
 		
 	else	
 		$character.caveOfPosition.topNeighbor.assignArrow()
@@ -80,7 +82,7 @@ end
 post '/shootToBottom' do
 	$character.shootArrow()
 	if($character.caveOfPosition.bottomNeighbor.isWumpusHere)
-		$startWumpus.killWumpus
+		$wumpus.killWumpus
 	else	
 		$character.caveOfPosition.bottomNeighbor.assignArrow()
 	end
@@ -90,7 +92,7 @@ end
 post '/shootToLeft' do
 	$character.shootArrow()
 	if($character.caveOfPosition.leftNeighbor.isWumpusHere)
-		$startWumpus.killWumpus
+		$wumpus.killWumpus
 	else	
 		$character.caveOfPosition.leftNeighbor.assignArrow()
 	end
@@ -99,7 +101,7 @@ end
 post '/shootToRight' do
 	$character.shootArrow()
 	if($character.caveOfPosition.rightNeighbor.isWumpusHere)
-		$startWumpus.killWumpus
+		$wumpus.killWumpus
 	else	
 		$character.caveOfPosition.rightNeighbor.assignArrow()
 	end
@@ -110,6 +112,7 @@ post '/start' do
 	$startWumpus=Cavern.new(10,10)
 	$startWumpus.generateNeighbors()
 	$character=Character.new($startWumpus.getCavern(0,0))
+	$wumpus=Wumpus.new($startWumpus.getCavern(5,5))
     @mensaje="Bienvenido al Mapa por Defecto"
 	erb :defaultMap
 end
