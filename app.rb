@@ -18,6 +18,7 @@ get '/play' do
 	@numberOfArrows=$character.numberOfArrows
 	@numberOfSpray=$character.numberOfSpray
 	@wumpusvivo = $wumpus.wumpusAlive
+	@monedas = $character.coins
 	erb :console
 end	
 get '/configureMap' do
@@ -37,7 +38,7 @@ post '/configureMap' do
 	erb :defaultMap
 end
 post '/toNorth' do	
-	$wumpus.moveWumpusRandomly
+	#$wumpus.moveWumpusRandomly
 	$character.moveNorth()
 	
 	$m="El wumpus se movio"
@@ -45,7 +46,7 @@ post '/toNorth' do
 	
 end
 post '/toSouth' do
-	$wumpus.moveWumpusRandomly	
+	#$wumpus.moveWumpusRandomly	
 	$character.moveSouth()
 	
 	$m="El wumpus se movio"
@@ -53,7 +54,7 @@ post '/toSouth' do
 	
 end
 post '/toEast' do	
-	$wumpus.moveWumpusRandomly
+	#$wumpus.moveWumpusRandomly
 	$character.moveEast()
 	
 	$m="El wumpus se movio"
@@ -62,7 +63,7 @@ post '/toEast' do
 end
 
 post '/toWest' do	
-	$wumpus.moveWumpusRandomly
+	#$wumpus.moveWumpusRandomly
 	$character.moveWest()
 	
 	$m="El wumpus se movio"
@@ -75,6 +76,7 @@ post '/shootToTop' do
 	while (!@caveaux.topNeighbor.nil? && $wumpus.wumpusAlive) do
 		if(@caveaux.topNeighbor.isWumpusHere)
 			$wumpus.killWumpus
+			$character.setCoins(10)
 			
 		else	
 			@caveaux = @caveaux.topNeighbor
@@ -91,6 +93,7 @@ post '/shootToBottom' do
 	while (!@caveaux.bottomNeighbor.nil? && $wumpus.wumpusAlive) do
 		if(@caveaux.bottomNeighbor.isWumpusHere)
 			$wumpus.killWumpus
+			$character.setCoins(10)
 			
 		else	
 			@caveaux = @caveaux.bottomNeighbor
@@ -108,7 +111,7 @@ post '/shootToLeft' do
 	while (!@caveaux.leftNeighbor.nil? && $wumpus.wumpusAlive) do
 		if(@caveaux.leftNeighbor.isWumpusHere)
 			$wumpus.killWumpus
-			
+			$character.setCoins(10)
 		else	
 			@caveaux = @caveaux.leftNeighbor
 		end
@@ -124,6 +127,7 @@ post '/shootToRight' do
 	while (!@caveaux.rightNeighbor.nil? && $wumpus.wumpusAlive) do
 		if(@caveaux.rightNeighbor.isWumpusHere)
 			$wumpus.killWumpus
+			$character.setCoins(10)
 			
 		else	
 			@caveaux = @caveaux.rightNeighbor

@@ -1,10 +1,9 @@
 require './lib/cave.rb'
-class Wumpus
+class Bat
     attr_accessor :caveOfPosition, :wumpusAlive
     def initialize(caveOfPosition)
         @caveOfPosition = caveOfPosition
-        @caveOfPosition.hostWumpus
-        setSmellAround(true)
+        @caveOfPosition.hostBat
         @wumpusAlive = true
     end
 end

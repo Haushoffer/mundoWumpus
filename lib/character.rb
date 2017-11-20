@@ -1,11 +1,12 @@
 require './lib/cave.rb'
 class Character
-	attr_accessor :caveOfPosition, :numberOfArrows, :numberOfSpray
+	attr_accessor :caveOfPosition, :numberOfArrows, :numberOfSpray, :coins
 
 	def initialize(caveOfPosition)
 		@caveOfPosition = caveOfPosition
 		@numberOfArrows=0
 		@numberOfSpray=0
+		@coins=0
 	end
 
 	def canGoNorth()
@@ -68,6 +69,9 @@ class Character
 	end
 	def useSpray()
 		@numberOfSpray=@numberOfSpray-1
+	end
+	def setCoins(c)
+		@coins = c
 	end
 end
 
