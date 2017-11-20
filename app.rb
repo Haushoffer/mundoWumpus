@@ -71,39 +71,66 @@ post '/toWest' do
 end
 post '/shootToTop' do
 	$character.shootArrow()
-	if($character.caveOfPosition.topNeighbor.isWumpusHere)
-		$wumpus.killWumpus
-		
-	else	
-		$character.caveOfPosition.topNeighbor.assignArrow()
+	@caveaux=$character.caveOfPosition
+	while (!@caveaux.topNeighbor.nil? && $wumpus.wumpusAlive) do
+		if(@caveaux.topNeighbor.isWumpusHere)
+			$wumpus.killWumpus
+			
+		else	
+			@caveaux = @caveaux.topNeighbor
+		end
+	end
+	if $wumpus.wumpusAlive
+		@caveaux.assignArrow()
 	end
 	redirect "/play"
 end
 post '/shootToBottom' do
 	$character.shootArrow()
-	if($character.caveOfPosition.bottomNeighbor.isWumpusHere)
-		$wumpus.killWumpus
-	else	
-		$character.caveOfPosition.bottomNeighbor.assignArrow()
+	@caveaux=$character.caveOfPosition
+	while (!@caveaux.bottomNeighbor.nil? && $wumpus.wumpusAlive) do
+		if(@caveaux.bottomNeighbor.isWumpusHere)
+			$wumpus.killWumpus
+			
+		else	
+			@caveaux = @caveaux.bottomNeighbor
+		end
+	end
+	if $wumpus.wumpusAlive
+		@caveaux.assignArrow()
 	end
 	redirect "/play"
 end
 
 post '/shootToLeft' do
 	$character.shootArrow()
-	if($character.caveOfPosition.leftNeighbor.isWumpusHere)
-		$wumpus.killWumpus
-	else	
-		$character.caveOfPosition.leftNeighbor.assignArrow()
+	@caveaux=$character.caveOfPosition
+	while (!@caveaux.leftNeighbor.nil? && $wumpus.wumpusAlive) do
+		if(@caveaux.leftNeighbor.isWumpusHere)
+			$wumpus.killWumpus
+			
+		else	
+			@caveaux = @caveaux.leftNeighbor
+		end
+	end
+	if $wumpus.wumpusAlive
+		@caveaux.assignArrow()
 	end
 	redirect "/play"
 end
 post '/shootToRight' do
 	$character.shootArrow()
-	if($character.caveOfPosition.rightNeighbor.isWumpusHere)
-		$wumpus.killWumpus
-	else	
-		$character.caveOfPosition.rightNeighbor.assignArrow()
+	@caveaux=$character.caveOfPosition
+	while (!@caveaux.rightNeighbor.nil? && $wumpus.wumpusAlive) do
+		if(@caveaux.rightNeighbor.isWumpusHere)
+			$wumpus.killWumpus
+			
+		else	
+			@caveaux = @caveaux.rightNeighbor
+		end
+	end
+	if $wumpus.wumpusAlive
+		@caveaux.assignArrow()
 	end
 	redirect "/play"
 end
