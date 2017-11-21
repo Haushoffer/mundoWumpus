@@ -1,5 +1,5 @@
 class Cave
-	attr_accessor :topNeighbor,:bottomNeighbor,:leftNeighbor,:rightNeighbor,:caveNumber,:isWumpusHere,:smell, :arrow
+	attr_accessor :topNeighbor,:bottomNeighbor,:leftNeighbor,:rightNeighbor,:caveNumber,:isWumpusHere,:isBatHere,:smell, :arrow, :spray
 
 	def initialize(topNeighbor,bottomNeighbor,leftNeighbor,rightNeighbor,caveNumber)
 		@topNeighbor = topNeighbor
@@ -8,11 +8,11 @@ class Cave
 		@leftNeighbor = leftNeighbor
 		@caveNumber = caveNumber
 		@isWumpusHere = false
+		@isBatHere = false
 		@smell = false
 		@arrow = false
+		@spray = false
 	end
-		
-
 	def assignBottomNeighbor(newNighbor)
 	 	@bottomNeighbor = newNighbor
 	end 	
@@ -31,14 +31,32 @@ class Cave
 	def oustWumpus()
 		@isWumpusHere = false
 	end
+	def hostBat()
+		@isBatHere = true
+	end
+	def oustBat()
+		@isBatHere = false
+	end
 	def thereIsAnArrowHere()
 		return @arrow
+	end
+	def thereIsASprayHere()
+		return @spray
 	end
 	def arrowPicked()
 		@arrow=false
 	end
 	def assignArrow()
 		@arrow=true
+	end
+	def sprayPicked()
+		@spray = false
+	end
+	def assignSpray()
+		@spray = true
+	end
+	def setSmell(v)
+		@smell = v
 	end
 end
 

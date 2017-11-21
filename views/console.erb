@@ -1,13 +1,11 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="shortcut icon" href="/favicon.ico" />
+<link rel="stylesheet" href='/estilo.css'>
+
+
 <html>
-		<style type="text/css">
-			#console 
-			{
-    			background-color: lightblue;
-			}
-		</style>
+	
 	<header>
 		<nav class="navbar navbar-inverse">
 		    <div class="container-fluid">
@@ -24,91 +22,150 @@
 		    </div>
 		</nav>
 	</header>
-    <div class="container">
-	      <div class="row">
-	      	<% if @wumpusvivo %> 
-	        <div class="col-md-4">
-	        	<center><h2>DIRECCION</h2></center>
-		          <div>
-	    					<% if @north %>
-	 							<form method="post" action="/toNorth">
-									<button type="submit" name="Norte">Norte</button>
-									
-								</form>
-							<% end %>
-							<% if @south %>
-	 							<form method="post" action="/toSouth">
-	        						<button type="submit" name="Sur">Sur</button>
-								</form>
-							<% end %>
-							<% if @east %>
-	 							<form method="post" action="/toEast">
-	        						<button type="submit" name="Este">Este</button>
-								</form>
-							<% end %>
-							<% if @west %>
-	 							<form method="post" action="/toWest">
-	        						<button type="submit" name="Oeste">Oeste</button>
-								</form>
-							<% end %>						
-					</div>
-	        </div>
-	        <div class="col-md-4">
-	          <center><h2>SUCESOS</h2></center>
-		          <div id="console">
-							<label>Entraste a la cueva <%= @mensaje %></label>
+   
+	      
+	       
+   		
+	<% if @wumpusvivo %> 		
+		<div id="container">
+			<div id="body">
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>	
+				<br>
+				<br>
+			
+				<div id="direc" >
+					<% if @north %>
+						<form method="post" action="/toNorth">
+						<button type="submit" name="Norte">Norte</button>
+						</form>
+					<% end %>
+					<% if @south %>
+						<form method="post" action="/toSouth">
+						<button type="submit" name="Sur">Sur</button>
+						</form>
+					<% end %>
+					<% if @east %>
+						<form method="post" action="/toEast">
+						<button type="submit" name="Este">Este</button>
+						</form>
+					<% end %>
+					<% if @west %>
+						<form method="post" action="/toWest">
+						<button type="submit" name="Oeste">Oeste</button>
+						</form>
+					<% end %>	
+				</div>
+			
+				<div id="bottom-screen-holder">
+					<div id="bottom-screen">
+						<div id="console">
+							<h4 color="white">Entraste a la cueva <%= @mensaje %></h4>
 							<br></br>
-							<label> <%= $m %></label>	
-	    					<br>
-	    					<% if @smell %>
-	 							<label>Se siente un olor fetido en este cuarto</label>
+							<h4> <%= $m %></h4>	
+							<br>
+							<% if @smell %>
+								<h4>Se siente un olor fetido en este cuarto</h4>
 							<% end %>
-	    		  </div>
-
-		    </div>
-	        <div class="col-md-4">
-	            <center><h2>ITEMS</h2></center>
-	         		 <label>Flechas: <%= @numberOfArrows %></label>
-	        </div>
-	    
-     </div>
-      <div class="container">
-	      <div class="row">
-	        <div class="col-md-4">
-	        	<center><h2>DISPARAR</h2></center>
-		          <div>
-	    					<% if @north %>
-								<% if @numberOfArrows>=1 %>
-									<form method="post" action="/shootToTop">
-										<button type="submit" name="shootTop">disparar al norte</button>
-									</form>
-								<%end%>
-							<% end %>
-							<% if @south %>
-								<% if @numberOfArrows>=1 %>
-									<form method="post" action="/shootToBottom">
-										<button type="submit" name="shootBot">disparar al sur</button>
-									</form>
-								<% end %>
-							<% end %>
-							<% if @east %>
-								<% if @numberOfArrows>=1 %>
-									<form method="post" action="/shootToRight">
-										<button type="submit" name="shootRight">disparar al este</button>
-									</form>
-								<% end %>
-							<% end %>
-							<% if @west %>
-								<% if @numberOfArrows>=1 %>
-									<form method="post" action="/shootToLeft">
-										<button type="submit" name="shootLeft">disparar al oeste</button>
-									</form>
-								<% end %>
-							<% end %>						
+						</div>
 					</div>
-	        </div>	    
-     </div>
-    <% else %>
-			<h2>Gano!!!!</h2>
+				</div>
+			
+				<div id="c-stick">
+					<label>Flechas: <%= @numberOfArrows %></label>
+				</div>
+			
+				<div id="color-button-holder">
+					<div id="blue-btn">
+						<% if @north %>
+							<% if @numberOfArrows>=1 %>
+								<form method="post" action="/shootToTop">
+									<button type="submit" name="shootTop">^</button>
+								</form>
+							<%end%>
+						<% end %>
+					</div>
+				
+					<div id="green-btn">
+						<% if @west %>
+							<% if @numberOfArrows>=1 %>
+								<form method="post" action="/shootToLeft">
+									<button type="submit" name="shootLeft"><</button>
+								</form>
+							<% end %>
+						<% end %>
+					</div>
+				
+					<div id="red-btn">
+						<% if @south %>
+							<% if @numberOfArrows>=1 %>
+									<form method="post" action="/shootToBottom">
+										<button type="submit" name="shootBot">v</button>
+									</form>
+							<% end %>
+						<% end %>
+					</div>
+				
+					<div id="yellow-btn">
+						<% if @east %>
+							<% if @numberOfArrows>=1 %>
+								<form method="post" action="/shootToRight">
+									<button type="submit" name="shootRight">></button>
+								</form>
+							<% end %>
+						<% end %>
+					</div>
+				</div>
+				<div id="c-stick">
+					<label>Spray: <%= @numberOfSpray %></label>
+				</div>
+			
+			
+			
+			
+			
+			</div>
+		
+		</div>
+	<% else %>	
+		<div id="container">
+			<div id="body">
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>	
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>	
+				
+				<div id="bottom-screen-holder">
+					<div id="bottom-screen">
+						<div id="console">
+							<h2> Venciste al Wumpus!!!!</h2>
+							
+						</div>
+					</div>
+				</div>
+				<div id="c-stick">
+					<label>Monedas: <%=@monedas %></label>
+				</div>
+			</div>
+		</div>
+
+
+
 	<% end %>
+	
+
 </html>
