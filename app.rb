@@ -2,6 +2,7 @@ require 'sinatra'
 require('./lib/cavern.rb')
 require('./lib/character.rb')
 require('./lib/wumpus.rb')
+require('./lib/bats.rb')
 get '/' do	
 	$m=" "
 	
@@ -10,6 +11,7 @@ end
 get '/play' do
 	@mensaje=$character.getNumberOfCavePositionated()
 	$m=$m + ""
+	
 	@north=$character.canGoNorth()
 	@south=$character.canGoSouth()
 	@east=$character.canGoEast()
@@ -19,7 +21,9 @@ get '/play' do
 	@numberOfSpray=$character.numberOfSpray
 	@wumpusvivo = $wumpus.wumpusAlive
 	@monedas = $character.coins
+	@whirr=$character.caveOfPosition.whir
 	erb :console
+	
 end	
 get '/configureMap' do
 	erb :configureMap
@@ -38,34 +42,55 @@ post '/configureMap' do
 	erb :defaultMap
 end
 post '/toNorth' do	
-	#$wumpus.moveWumpusRandomly
+	$wumpus.moveWumpusRandomly
 	$character.moveNorth()
+	if($character.withBats)
+		$character.setPos($startWumpus.getCavern(0,0))
+		$mensajeActual="los murcielagos de devolvieron al inicio"
+	else
+		$mensajeActual=""
+	end
 	
 	$m="El wumpus se movio"
 	redirect "/play"
 	
 end
 post '/toSouth' do
-	#$wumpus.moveWumpusRandomly	
+	$wumpus.moveWumpusRandomly	
 	$character.moveSouth()
-	
+	if($character.withBats)
+		$character.setPos($startWumpus.getCavern(0,0))
+		$mensajeActual="los murcielagos Te devolvieron al inicio"
+	else
+		$mensajeActual=""
+	end
 	$m="El wumpus se movio"
 	redirect "/play"
 	
 end
 post '/toEast' do	
-	#$wumpus.moveWumpusRandomly
+	$wumpus.moveWumpusRandomly
 	$character.moveEast()
-	
+	if($character.withBats)
+		$character.setPos($startWumpus.getCavern(0,0))
+		$mensajeActual="los murcielagos de devolvieron al inicio"
+	else
+		$mensajeActual=""
+	end
 	$m="El wumpus se movio"
 	redirect "/play"
 	
 end
 
 post '/toWest' do	
-	#$wumpus.moveWumpusRandomly
+	$wumpus.moveWumpusRandomly
 	$character.moveWest()
-	
+	if($character.withBats)
+		$character.setPos($startWumpus.getCavern(0,0))
+		$mensajeActual="los murcielagos de devolvieron al inicio"
+	else
+		$mensajeActual=""
+	end
 	$m="El wumpus se movio"
 	redirect "/play"
 	
@@ -142,6 +167,8 @@ end
 post '/start' do		
 	$startWumpus=Cavern.new(10,10)
 	$startWumpus.generateNeighbors()
+	param= $startWumpus
+	$batriders=Bats.new(param)
 	$character=Character.new($startWumpus.getCavern(0,0))
 	$wumpus=Wumpus.new($startWumpus.getCavern(5,5))
     @mensaje="Bienvenido al Mapa por Defecto"

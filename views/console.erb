@@ -1,3 +1,4 @@
+<link rel="stylesheet" href='/estilo.css'>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="shortcut icon" href="/favicon.ico" />
@@ -67,10 +68,14 @@
 							<h4 color="white">Entraste a la cueva <%= @mensaje %></h4>
 							<br></br>
 							<h4> <%= $m %></h4>	
+							<h4> <%= $mensajeActual %></h4>	
 							<br>
 							<% if @smell %>
 								<h4>Se siente un olor fetido en este cuarto</h4>
 							<% end %>
+							<% if @whirr %>
+							<h4>Se escucha un aleteo cerca</h4>
+						<% end %>
 						</div>
 					</div>
 				</div>

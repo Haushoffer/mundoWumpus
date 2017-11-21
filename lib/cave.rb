@@ -1,5 +1,5 @@
 class Cave
-	attr_accessor :topNeighbor,:bottomNeighbor,:leftNeighbor,:rightNeighbor,:caveNumber,:isWumpusHere,:isBatHere,:smell, :arrow, :spray
+	attr_accessor :topNeighbor,:bottomNeighbor,:leftNeighbor,:rightNeighbor,:caveNumber,:isWumpusHere,:isBatHere,:smell, :arrow, :spray, :whir
 
 	def initialize(topNeighbor,bottomNeighbor,leftNeighbor,rightNeighbor,caveNumber)
 		@topNeighbor = topNeighbor
@@ -12,6 +12,8 @@ class Cave
 		@smell = false
 		@arrow = false
 		@spray = false
+		@whir = false #aleteo-zumbido
+
 	end
 	def assignBottomNeighbor(newNighbor)
 	 	@bottomNeighbor = newNighbor
@@ -57,6 +59,9 @@ class Cave
 	end
 	def setSmell(v)
 		@smell = v
+	end
+	def setWhir(v)
+		@whir = v
 	end
 end
 

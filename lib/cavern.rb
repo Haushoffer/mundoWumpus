@@ -77,5 +77,14 @@ class Cavern
 	def getWelcomeMessage()
 		return "Bienvenido al Mapa por Defecto"
 	end
+	def getRandomCave()
+		x = rand(1..$x_length-1)
+		y = rand(1..$y_length-1)
+		return $play_area[x][y]
+	end
+	
+	def getBatNumber
+		return ($x_length * $y_length)/5
+	end
 
 end

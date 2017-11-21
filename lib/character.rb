@@ -73,6 +73,12 @@ class Character
 	def setCoins(c)
 		@coins = c
 	end
+	def setPos(cavePos)
+		@caveOfPosition = cavePos
+	end
+	def withBats
+		return @caveOfPosition.isBatHere
+	end
 end
 
 
