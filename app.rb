@@ -18,6 +18,7 @@ get '/play' do
 	@numberOfArrows=$character.numberOfArrows
 	@numberOfSpray=$character.numberOfSpray
 	@wumpusvivo = $wumpus.wumpusAlive
+	@monedas = $character.coins
 	erb :console
 end	
 get '/configureMap' do
@@ -37,7 +38,7 @@ post '/configureMap' do
 	erb :defaultMap
 end
 post '/toNorth' do	
-	$wumpus.moveWumpusRandomly
+	#$wumpus.moveWumpusRandomly
 	$character.moveNorth()
 	
 	$m="El wumpus se movio"
@@ -45,7 +46,7 @@ post '/toNorth' do
 	
 end
 post '/toSouth' do
-	$wumpus.moveWumpusRandomly	
+	#$wumpus.moveWumpusRandomly	
 	$character.moveSouth()
 	
 	$m="El wumpus se movio"
@@ -53,7 +54,7 @@ post '/toSouth' do
 	
 end
 post '/toEast' do	
-	$wumpus.moveWumpusRandomly
+	#$wumpus.moveWumpusRandomly
 	$character.moveEast()
 	
 	$m="El wumpus se movio"
@@ -62,7 +63,7 @@ post '/toEast' do
 end
 
 post '/toWest' do	
-	$wumpus.moveWumpusRandomly
+	#$wumpus.moveWumpusRandomly
 	$character.moveWest()
 	
 	$m="El wumpus se movio"
@@ -71,39 +72,69 @@ post '/toWest' do
 end
 post '/shootToTop' do
 	$character.shootArrow()
-	if($character.caveOfPosition.topNeighbor.isWumpusHere)
-		$wumpus.killWumpus
-		
-	else	
-		$character.caveOfPosition.topNeighbor.assignArrow()
+	@caveaux=$character.caveOfPosition
+	while (!@caveaux.topNeighbor.nil? && $wumpus.wumpusAlive) do
+		if(@caveaux.topNeighbor.isWumpusHere)
+			$wumpus.killWumpus
+			$character.setCoins(10)
+			
+		else	
+			@caveaux = @caveaux.topNeighbor
+		end
+	end
+	if $wumpus.wumpusAlive
+		@caveaux.assignArrow()
 	end
 	redirect "/play"
 end
 post '/shootToBottom' do
 	$character.shootArrow()
-	if($character.caveOfPosition.bottomNeighbor.isWumpusHere)
-		$wumpus.killWumpus
-	else	
-		$character.caveOfPosition.bottomNeighbor.assignArrow()
+	@caveaux=$character.caveOfPosition
+	while (!@caveaux.bottomNeighbor.nil? && $wumpus.wumpusAlive) do
+		if(@caveaux.bottomNeighbor.isWumpusHere)
+			$wumpus.killWumpus
+			$character.setCoins(10)
+			
+		else	
+			@caveaux = @caveaux.bottomNeighbor
+		end
+	end
+	if $wumpus.wumpusAlive
+		@caveaux.assignArrow()
 	end
 	redirect "/play"
 end
 
 post '/shootToLeft' do
 	$character.shootArrow()
-	if($character.caveOfPosition.leftNeighbor.isWumpusHere)
-		$wumpus.killWumpus
-	else	
-		$character.caveOfPosition.leftNeighbor.assignArrow()
+	@caveaux=$character.caveOfPosition
+	while (!@caveaux.leftNeighbor.nil? && $wumpus.wumpusAlive) do
+		if(@caveaux.leftNeighbor.isWumpusHere)
+			$wumpus.killWumpus
+			$character.setCoins(10)
+		else	
+			@caveaux = @caveaux.leftNeighbor
+		end
+	end
+	if $wumpus.wumpusAlive
+		@caveaux.assignArrow()
 	end
 	redirect "/play"
 end
 post '/shootToRight' do
 	$character.shootArrow()
-	if($character.caveOfPosition.rightNeighbor.isWumpusHere)
-		$wumpus.killWumpus
-	else	
-		$character.caveOfPosition.rightNeighbor.assignArrow()
+	@caveaux=$character.caveOfPosition
+	while (!@caveaux.rightNeighbor.nil? && $wumpus.wumpusAlive) do
+		if(@caveaux.rightNeighbor.isWumpusHere)
+			$wumpus.killWumpus
+			$character.setCoins(10)
+			
+		else	
+			@caveaux = @caveaux.rightNeighbor
+		end
+	end
+	if $wumpus.wumpusAlive
+		@caveaux.assignArrow()
 	end
 	redirect "/play"
 end
