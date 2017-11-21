@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/rack-test/rack-test.git
+  revision: 48dc4b330b16366b7ae9654eebb6a25c30dca2df
+  branch: master
+  specs:
+    rack-test (0.8.0)
+      rack (>= 1.0, < 3)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -34,8 +42,6 @@ GEM
     rack (2.0.3)
     rack-protection (2.0.0)
       rack
-    rack-test (0.7.1)
-      rack (>= 1.0, < 3)
     rspec (3.7.0)
       rspec-core (~> 3.7.0)
       rspec-expectations (~> 3.7.0)
@@ -74,7 +80,7 @@ PLATFORMS
 
 DEPENDENCIES
   cucumber
-  rack-test
+  rack-test!
   rspec
   simplecov
   simplecov-console
