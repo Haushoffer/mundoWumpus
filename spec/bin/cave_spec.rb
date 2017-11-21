@@ -57,4 +57,9 @@ describe Cave do
 		cave.assignArrow()
 		expect(cave.arrow).to eq(true)
 	end
+	it 'asignar murcielago a una caverna' do
+		cave = Cave.new(nil,nil,nil,nil,10)
+		cave.hostBat
+		expect(cave.isBatHere).to eq(true)
+	end
 end

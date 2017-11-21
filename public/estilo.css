@@ -12,8 +12,9 @@ yellow btn: d4b95e
 */
 
 #container{
-	margin: 100px auto;
+	margin: 10% auto;
 	width: 600px;
+	height: 700px;
 }
 
 #body{
@@ -26,13 +27,13 @@ yellow btn: d4b95e
 	color: white;
 }
 #direc{
-	padding-left: 8%;
-	color: green;
+	padding-left: 3%;
+	color: black;
 	width:30px;
 	height:75px;
 	position:relative;
-	top: 5px;
-	left: 55px;
+	top: -15%;
+	left: 5%;
 }
 
 
