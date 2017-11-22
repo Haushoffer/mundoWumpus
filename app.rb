@@ -18,6 +18,7 @@ get '/play' do
 	@smell=$character.caveOfPosition.smell
 	@numberOfArrows=$character.numberOfArrows
 	@numberOfSpray=$character.numberOfSpray
+	@caught = $wumpus.wumpusAlive && ($character.caveOfPosition.caveNumber == $wumpus.caveOfPosition.caveNumber)
 	@wumpusvivo = $wumpus.wumpusAlive
 	@monedas = $character.coins
 	@whirr=$character.caveOfPosition.whir
