@@ -145,7 +145,7 @@
 					<% if @west %>
 						<% if @numberOfArrows>=1 && @pressAr%>
 							<form method="post" action="/shootToLeft">
-								<button type="submit" name="shootLeft"></button>
+								<button type="submit" name="shootLeft"><</button>
 							</form>
 						<% elsif @pressMo %>
 							<form method="post" action="/toWest">
@@ -153,7 +153,7 @@
 							</form>
 						<% elsif @pressSp %>
 							<form method="post" action="/sprayToLeft">
-								<button type="submit" name="sprayLeft"></button>
+								<button type="submit" name="sprayLeft"><</button>
 							</form>
 						<% end %>
 					<% end %>	
