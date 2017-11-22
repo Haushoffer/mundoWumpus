@@ -6,12 +6,12 @@ Feature:
 
 Scenario:
 	Given visito la pagina de inicio
-	When pulso el boton "JUGAR MAPA POR DEFECTO"
+	When pulso el boton "testMap"
 	And pulso el boton "INICIO"
 	Then deberia mostrar la cantidad de "Spray: 0"
 Scenario:
 	Given visito la pagina de inicio
-	When pulso el boton "JUGAR MAPA POR DEFECTO"
+	When pulso el boton "testMap"
 	And pulso el boton "INICIO"
 	And pulso el boton de direccion "Este"
 	And pulso el boton de direccion "Sur"
@@ -19,7 +19,7 @@ Scenario:
 	Then deberia mostrar la cantidad de "Spray: 1"
 Scenario:
 	Given visito la pagina de inicio
-	When pulso el boton "JUGAR MAPA POR DEFECTO"
+	When pulso el boton "testMap"
 	And pulso el boton "INICIO"
 	And pulso el boton de direccion "Este"
 	And pulso el boton de direccion "Sur"

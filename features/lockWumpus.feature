@@ -5,6 +5,6 @@ Feature:
 
 Scenario:
 		Given visito la pagina de inicio
-		When pulso el boton "JUGAR MAPA POR DEFECTO"
+		When pulso el boton "testMap"
 		And pulso el boton "INICIO"
-		Then deberia mostrar el mensaje "El Wumpus esta activo"
+		Then deberia mostrar el mensaje "El Wumpus esta quieto"

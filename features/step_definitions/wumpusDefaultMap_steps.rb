@@ -13,3 +13,7 @@ When (/^pulso el boton de direccion "(.*)"$/) do |boton|
   click_button(boton)
   follow_redirect!
 end
+When (/^pulso el boton de cambio de utilidad a "(.*)"$/) do |boton|
+  click_button(boton)
+  follow_redirect!
+end

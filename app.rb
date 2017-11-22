@@ -192,6 +192,7 @@ post '/sprayToTop' do
 	if(@caveaux.topNeighbor.isBatHere)
 		$character.coins=$character.coins+10
 		@caveaux.bottomNeighbor.stunTheBat()
+		$mensajeActual="los murcielagos estaran aturdidos por un turno"
 	end
 	checkMovement
 	redirect "/play"
@@ -202,6 +203,7 @@ post '/sprayToBottom' do
 	if(@caveaux.bottomNeighbor.isBatHere)
 		$character.coins=$character.coins+10
 		@caveaux.bottomNeighbor.stunTheBat()
+		$mensajeActual="los murcielagos estaran aturdidos por un turno"
 	end
 	checkMovement
 	redirect "/play"
@@ -213,6 +215,7 @@ post '/sprayToLeft' do
 	if(@caveaux.leftNeighbor.isBatHere)
 		$character.coins=$character.coins+10
 		@caveaux.bottomNeighbor.stunTheBat()
+		$mensajeActual="los murcielagos estaran aturdidos por un turno"
 	end	
 	checkMovement
 	redirect "/play"
@@ -223,6 +226,7 @@ post '/sprayToRight' do
 	if(@caveaux.rightNeighbor.isBatHere)
 		$character.coins=$character.coins+10
 		@caveaux.bottomNeighbor.stunTheBat()
+		$mensajeActual="los murcielagos estaran aturdidos por un turno"
 	end
 	checkMovement
 	redirect "/play"
@@ -235,6 +239,20 @@ post '/start' do
 	$batriders=Bats.new(param)
 	$character=Character.new($startWumpus.getCavern(0,0))
 	$wumpus=Wumpus.new($startWumpus.getCavern(5,5))
+    @mensaje="Bienvenido al Mapa por Defecto"
+    $pressMov=true
+	$pressSA=false
+	$pressSpray=false
+	erb :defaultMap
+end
+post '/testStart' do
+	$startWumpus=Cavern.new(10,10)
+	$startWumpus.generateNeighbors()
+	param= $startWumpus
+	$batriders=Bat.new($startWumpus.getCavern(4,4))
+	$character=Character.new($startWumpus.getCavern(0,0))
+	$wumpus=Wumpus.new($startWumpus.getCavern(5,5))
+	$wumpus.isLock=true
     @mensaje="Bienvenido al Mapa por Defecto"
     $pressMov=true
 	$pressSA=false
