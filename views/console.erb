@@ -81,8 +81,12 @@
 					
 				</div>
 				<div id="c-stick">
-						<label>Monedas: <%=@monedas %></label>
+						<label>Monedas:</label>
 				</div>
+				<div id="c-stick">
+						<label><%=@monedas %></label>
+				</div>
+				
 			
 				<div id="c-stick">
 					<label>Flechas: <%= @numberOfArrows %></label>
@@ -137,7 +141,7 @@
 						<% if @north %>
 							<% if @numberOfSpray>=1 %>
 								<form method="post" action="/sprayToTop">
-									<button type="submit" name="sprayToTop">^</button>
+									<button type="submit" name="sprayTop">^</button>
 								</form>
 							<%end%>
 						<% end %>
@@ -147,7 +151,7 @@
 						<% if @west %>
 							<% if @numberOfSpray>=1 %>
 								<form method="post" action="/sprayToLeft">
-									<button type="submit" name="sprayToLeft"><</button>
+									<button type="submit" name="sprayLeft"><</button>
 								</form>
 							<% end %>
 						<% end %>
@@ -157,7 +161,7 @@
 						<% if @south %>
 							<% if @numberOfSpray>=1 %>
 									<form method="post" action="/sprayToBottom">
-										<button type="submit" name="sprayToBot">v</button>
+										<button type="submit" id="sprayBot">v</button>
 									</form>
 							<% end %>
 						<% end %>
@@ -167,7 +171,7 @@
 						<% if @east %>
 							<% if @numberOfSpray>=1 %>
 								<form method="post" action="/sprayToRight">
-									<button type="submit" name="sprayToRight">></button>
+									<button type="submit" name="sprayRight">></button>
 								</form>
 							<% end %>
 						<% end %>

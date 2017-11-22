@@ -34,4 +34,9 @@ describe Bat do
         bat = Bat.new(cave)
         expect(cave.leftNeighbor.whir).to eq(true)
     end
+    it 'Devolver true si la caverna contiene un murcielago' do
+        cave = Cave.new(nil,nil,nil,nil,10)
+        bat = Bat.new(cave)
+        expect(cave.isBatHere).to eq(true)
+    end
 end

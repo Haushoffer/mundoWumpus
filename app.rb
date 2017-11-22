@@ -166,31 +166,34 @@ end
 post '/sprayToTop' do
 	$character.useSpray()
 	@caveaux=$character.caveOfPosition
-
-
+	if(@caveaux.topNeighbor.isBatHere)
+		$character.coins=$character.coins+10
+	end
 	redirect "/play"
 end
 post '/sprayToBottom' do
 	$character.useSpray()
 	@caveaux=$character.caveOfPosition
-
-
-
+	if(@caveaux.bottomNeighbor.isBatHere)
+		$character.coins=$character.coins+10
+	end
 	redirect "/play"
 end
 
 post '/sprayToLeft' do
 	$character.useSpray()
 	@caveaux=$character.caveOfPosition
-	
+	if(@caveaux..leftNeighbor.isBatHere)
+		$character.coins=$character.coins+10
+	end	
 	redirect "/play"
 end
 post '/sprayToRight' do
 	$character.useSpray()
 	@caveaux=$character.caveOfPosition
-	
-
-
+	if(@caveaux.rightNeighbor.isBatHere)
+		$character.coins=$character.coins+10
+	end
 	redirect "/play"
 end
 

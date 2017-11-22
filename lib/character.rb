@@ -5,7 +5,7 @@ class Character
 	def initialize(caveOfPosition)
 		@caveOfPosition = caveOfPosition
 		@numberOfArrows=0
-		@numberOfSpray=5
+		@numberOfSpray=0
 		@coins=0
 	end
 
