@@ -31,7 +31,23 @@
   			background-color: #3e8e41;
   			box-shadow: 0 5px #666;
   			transform: translateY(4px);
-		}	
+		}
+		.buttonPressed
+		{
+			display: inline-block;
+  			padding: 7px 15px;
+  			font-size: 17px;
+  			cursor: pointer;
+  			text-align: center;
+  			text-decoration: none;
+  			outline: none;
+  			color: #fff;
+  			background-color: #3e8e41;
+  			box-shadow: 0 5px #666;
+  			transform: translateY(4px);
+  			border: none;
+  			border-radius: 15px;
+		}
 	</style>
 </head>
 
@@ -53,10 +69,6 @@
 		    </div>
 		</nav>
 	</header>
-   
-	      
-	       
-   		
 	<% if @wumpusvivo %> 		
 		<div id="container">
 			<div id="body">
@@ -162,6 +174,12 @@
 			<form method="post" action="/lockWumpus">
 				<button class="buttonEffect" type="submit" name="Bloquear_Wumpus"><%= @nombreBoton %></button>
 				<h4> <%= @mensajeWumpus %></h4>	
+			</form>
+			<form method="post" action="/pressMovement">
+				<button class="buttonPressed" type="submit" name="pressMovement">Movimiento</button>
+			</form>
+			<form method="post" action="/pressShootArrow">
+				<button class="buttonPressed" type="submit" name="pressShootArrow">Disparar Flecha</button>
 			</form>
 		</div>
 	<% else %>	

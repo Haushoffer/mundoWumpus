@@ -11,7 +11,6 @@ end
 get '/play' do
 	@mensaje=$character.getNumberOfCavePositionated()
 	$m=$m + ""
-	
 	@north=$character.canGoNorth()
 	@south=$character.canGoSouth()
 	@east=$character.canGoEast()
@@ -29,8 +28,7 @@ get '/play' do
 		@mensajeWumpus = "El Wumpus esta activo"
 		@nombreBoton = "Bloquear movimiento"
 	end
-	erb :console
-	
+	erb :console	
 end	
 get '/configureMap' do
 	erb :configureMap
@@ -189,5 +187,3 @@ post '/start' do
     @mensaje="Bienvenido al Mapa por Defecto"
 	erb :defaultMap
 end
-
-
