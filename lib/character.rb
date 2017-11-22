@@ -5,7 +5,7 @@ class Character
 	def initialize(caveOfPosition)
 		@caveOfPosition = caveOfPosition
 		@numberOfArrows=0
-		@numberOfSpray=0
+		@numberOfSpray=10
 		@coins=0
 	end
 
@@ -30,18 +30,30 @@ class Character
 	end
 
 	def moveNorth()
+		if(@caveOfPosition.batStunned)
+			@caveOfPosition.isBatHere=true
+		end
 		@caveOfPosition=@caveOfPosition.topNeighbor
 	end
 
 	def moveSouth()
+		if(@caveOfPosition.batStunned)
+			@caveOfPosition.isBatHere=true
+		end
 		@caveOfPosition=@caveOfPosition.bottomNeighbor
 	end
 
 	def moveEast()
+		if(@caveOfPosition.batStunned)
+			@caveOfPosition.isBatHere=true
+		end
 		@caveOfPosition=@caveOfPosition.rightNeighbor
 	end
 
 	def moveWest()
+		if(@caveOfPosition.batStunned)
+			@caveOfPosition.isBatHere=true
+		end
 		@caveOfPosition=@caveOfPosition.leftNeighbor
 	end
 
@@ -62,12 +74,18 @@ class Character
 		@numberOfArrows=@numberOfArrows+1
 	end
 	def shootArrow()
+		if(@caveOfPosition.batStunned)
+			@caveOfPosition.isBatHere=true
+		end
 		@numberOfArrows=@numberOfArrows-1
 	end
 	def pickSpray()
 		@numberOfSpray=@numberOfSpray+1
 	end
 	def useSpray()
+		if(@caveOfPosition.batStunned)
+			@caveOfPosition.isBatHere=true
+		end
 		@numberOfSpray=@numberOfSpray-1
 	end
 	def setCoins(c)

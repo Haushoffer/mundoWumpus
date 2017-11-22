@@ -39,4 +39,10 @@ describe Bat do
         bat = Bat.new(cave)
         expect(cave.isBatHere).to eq(true)
     end
+    it 'Devolver true si el murcielgo esta aturdido' do
+        cave = Cave.new(nil,nil,nil,nil,10)
+        bat = Bat.new(cave)
+        cave.stunTheBat()
+        expect(cave.isBatHere).to eq(false)
+    end
 end

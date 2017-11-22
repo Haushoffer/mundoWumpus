@@ -50,7 +50,6 @@ post '/toNorth' do
 	else
 		$mensajeActual=""
 	end
-	
 	$m="El wumpus se movio"
 	redirect "/play"
 	
@@ -101,7 +100,7 @@ post '/shootToTop' do
 	while (!@caveaux.topNeighbor.nil? && $wumpus.wumpusAlive) do
 		if(@caveaux.topNeighbor.isWumpusHere)
 			$wumpus.killWumpus
-			$character.setCoins(100)
+			$character.coins=$character.coins+100
 			
 		else	
 			@caveaux = @caveaux.topNeighbor
@@ -118,7 +117,7 @@ post '/shootToBottom' do
 	while (!@caveaux.bottomNeighbor.nil? && $wumpus.wumpusAlive) do
 		if(@caveaux.bottomNeighbor.isWumpusHere)
 			$wumpus.killWumpus
-			$character.setCoins(100)
+			$character.coins=$character.coins+100
 			
 		else	
 			@caveaux = @caveaux.bottomNeighbor
@@ -136,7 +135,7 @@ post '/shootToLeft' do
 	while (!@caveaux.leftNeighbor.nil? && $wumpus.wumpusAlive) do
 		if(@caveaux.leftNeighbor.isWumpusHere)
 			$wumpus.killWumpus
-			$character.setCoins(100)
+			$character.coins=$character.coins+100
 		else	
 			@caveaux = @caveaux.leftNeighbor
 		end
@@ -152,7 +151,7 @@ post '/shootToRight' do
 	while (!@caveaux.rightNeighbor.nil? && $wumpus.wumpusAlive) do
 		if(@caveaux.rightNeighbor.isWumpusHere)
 			$wumpus.killWumpus
-			$character.setCoins(100)
+			$character.coins=$character.coins+100
 			
 		else	
 			@caveaux = @caveaux.rightNeighbor
@@ -168,6 +167,7 @@ post '/sprayToTop' do
 	@caveaux=$character.caveOfPosition
 	if(@caveaux.topNeighbor.isBatHere)
 		$character.coins=$character.coins+10
+		@caveaux.bottomNeighbor.stunTheBat()
 	end
 	redirect "/play"
 end
@@ -176,6 +176,7 @@ post '/sprayToBottom' do
 	@caveaux=$character.caveOfPosition
 	if(@caveaux.bottomNeighbor.isBatHere)
 		$character.coins=$character.coins+10
+		@caveaux.bottomNeighbor.stunTheBat()
 	end
 	redirect "/play"
 end
@@ -185,6 +186,7 @@ post '/sprayToLeft' do
 	@caveaux=$character.caveOfPosition
 	if(@caveaux..leftNeighbor.isBatHere)
 		$character.coins=$character.coins+10
+		@caveaux.bottomNeighbor.stunTheBat()
 	end	
 	redirect "/play"
 end
@@ -193,6 +195,7 @@ post '/sprayToRight' do
 	@caveaux=$character.caveOfPosition
 	if(@caveaux.rightNeighbor.isBatHere)
 		$character.coins=$character.coins+10
+		@caveaux.bottomNeighbor.stunTheBat()
 	end
 	redirect "/play"
 end
