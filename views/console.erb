@@ -170,48 +170,8 @@
 				<div id="c-stick">
 					<label>Flechas: <%= @numberOfArrows %></label>
 				</div>
-			
-				<div id="color-button-holder">
-					<div id="blue-btn">
-						<% if @north %>
-							<% if @numberOfArrows>=1 %>
-								<form method="post" action="/shootToTop">
-									<button type="submit" name="shootTop">^</button>
-								</form>
-							<%end%>
-						<% end %>
-					</div>
-				
-					<div id="green-btn">
-						<% if @west %>
-							<% if @numberOfArrows>=1 %>
-								<form method="post" action="/shootToLeft">
-									<button type="submit" name="shootLeft"><</button>
-								</form>
-							<% end %>
-						<% end %>
-					</div>
-				
-					<div id="red-btn">
-						<% if @south %>
-							<% if @numberOfArrows>=1 %>
-									<form method="post" action="/shootToBottom">
-										<button type="submit" name="shootBot">v</button>
-									</form>
-							<% end %>
-						<% end %>
-					</div>
-				
-					<div id="yellow-btn">
-						<% if @east %>
-							<% if @numberOfArrows>=1 %>
-								<form method="post" action="/shootToRight">
-									<button type="submit" name="shootRight">></button>
-								</form>
-							<% end %>
-						<% end %>
-					</div>
-				</div>
+				<br>
+				<br>
 				<div id="c-stick">
 					<label>Spray: <%= @numberOfSpray %></label>
 				</div>
