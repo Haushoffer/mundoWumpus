@@ -22,6 +22,13 @@ get '/play' do
 	@wumpusvivo = $wumpus.wumpusAlive
 	@monedas = $character.coins
 	@whirr=$character.caveOfPosition.whir
+	if($wumpus.isLock)
+		@mensajeWumpus = "El Wumpus esta quieto"
+		@nombreBoton = "Desbloquear movimiento"
+	else
+		@mensajeWumpus = "El Wumpus esta activo"
+		@nombreBoton = "Bloquear movimiento"
+	end
 	erb :console
 	
 end	
@@ -51,7 +58,7 @@ post '/toNorth' do
 		$mensajeActual=""
 	end
 	
-	$m="El wumpus se movio"
+	$m=""
 	redirect "/play"
 	
 end
@@ -64,7 +71,7 @@ post '/toSouth' do
 	else
 		$mensajeActual=""
 	end
-	$m="El wumpus se movio"
+	$m=""
 	redirect "/play"
 	
 end
@@ -77,7 +84,7 @@ post '/toEast' do
 	else
 		$mensajeActual=""
 	end
-	$m="El wumpus se movio"
+	$m=""
 	redirect "/play"
 	
 end
@@ -91,9 +98,17 @@ post '/toWest' do
 	else
 		$mensajeActual=""
 	end
-	$m="El wumpus se movio"
+	$m=""
 	redirect "/play"
 	
+end
+post '/lockWumpus' do	
+	if($wumpus.isLock)
+		$wumpus.unlock
+	else
+		$wumpus.lock
+	end
+	redirect "/play"
 end
 post '/shootToTop' do
 	$character.shootArrow()

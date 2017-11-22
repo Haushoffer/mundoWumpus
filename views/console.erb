@@ -3,7 +3,37 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="shortcut icon" href="/favicon.ico" />
 <link rel="stylesheet" href='/estilo.css'>
+<head>
+	<style>
+		.buttonEffect 
+		{
+  			display: inline-block;
+  			padding: 7px 15px;
+  			font-size: 17px;
+  			cursor: pointer;
+  			text-align: center;
+  			text-decoration: none;
+  			outline: none;
+  			color: #fff;
+  			background-color: #4CAF50;
+  			border: none;
+  			border-radius: 15px;
+  			box-shadow: 0 9px #999;
+		}		
 
+		.buttonEffect:hover 
+		{
+			background-color: #3e8e41
+		}
+
+		.buttonEffect:active 
+		{
+  			background-color: #3e8e41;
+  			box-shadow: 0 5px #666;
+  			transform: translateY(4px);
+		}	
+	</style>
+</head>
 
 <html>
 	
@@ -128,13 +158,11 @@
 				<div id="c-stick">
 					<label>Spray: <%= @numberOfSpray %></label>
 				</div>
-			
-			
-			
-			
-			
 			</div>
-		
+			<form method="post" action="/lockWumpus">
+				<button class="buttonEffect" type="submit" name="Bloquear_Wumpus"><%= @nombreBoton %></button>
+				<h4> <%= @mensajeWumpus %></h4>	
+			</form>
 		</div>
 	<% else %>	
 		<div id="container">
@@ -167,10 +195,5 @@
 				</div>
 			</div>
 		</div>
-
-
-
 	<% end %>
-	
-
 </html>

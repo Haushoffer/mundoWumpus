@@ -1,11 +1,12 @@
 require './lib/cave.rb'
 class Wumpus
-    attr_accessor :caveOfPosition, :wumpusAlive
+    attr_accessor :caveOfPosition, :wumpusAlive, :isLock
     def initialize(caveOfPosition)
         @caveOfPosition = caveOfPosition
         @caveOfPosition.hostWumpus
         setSmellAround(true)
         @wumpusAlive = true
+        @isLock = false
     end
     
     def setSmellAround(value)
@@ -52,28 +53,28 @@ class Wumpus
     end
     def moveWumpusRandomly
 		newpos = rand(1..4)
-		if newpos == 1 #top
+		if newpos == 1 && (!isLock)#top
 			if(@caveOfPosition.topNeighbor.nil?)
 				moveWumpusRandomly
 			else
 				moveWumpusOnePosToTop
 			end
 		end
-		if newpos == 2 #right
+		if newpos == 2 && (!isLock)#right
 			if(@caveOfPosition.rightNeighbor.nil?)
 				moveWumpusRandomly
 			else
 				moveWumpusOnePosToRight
 			end
 		end
-		if newpos == 3 #bot
+		if newpos == 3 && (!isLock)#bot
 			if(@caveOfPosition.bottomNeighbor.nil?)
 				moveWumpusRandomly
 			else
 				moveWumpusOnePosToBottom
 			end
 		end
-		if newpos == 4 #left
+		if newpos == 4 && (!isLock)#left
 			if(@caveOfPosition.leftNeighbor.nil?)
 				moveWumpusRandomly
 			else
@@ -83,5 +84,11 @@ class Wumpus
 	end
     def killWumpus
 		@wumpusAlive = false
+	end
+	def lock
+		@isLock = true
+	end
+	def unlock
+		@isLock = false
 	end
 end
