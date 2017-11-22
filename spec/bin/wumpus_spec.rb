@@ -10,6 +10,13 @@ describe Wumpus do
 		expect(cavernita.getCavern(5,4).isWumpusHere).to eq(false)
 		expect(cavernita.getCavern(4,4).isWumpusHere).to eq(true)
     end
+    it 'El wumpus devuelve true a isLock' do
+        cavernita = Cavern.new(9,8)
+        cavernita.generateNeighbors()
+        wumpus = Wumpus.new(cavernita.getCavern(5,4))
+        wumpus.lock
+		expect(wumpus.isLock).to eq(true)
+    end
     it 'El wumpus se movio una posicion arriba y el olor lo acompaña' do
         cavernita = Cavern.new(9,8)
         cavernita.generateNeighbors()
@@ -59,9 +66,4 @@ describe Wumpus do
 		wumpus.killWumpus
 		expect(wumpus.wumpusAlive).to eq(false)
 	end
-	
-    
-	
-	
-	
 end
