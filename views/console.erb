@@ -15,7 +15,7 @@
   			text-decoration: none;
   			outline: none;
   			color: #fff;
-  			background-color: #4CAF50;
+  			background-color: #0066ff;
   			border: none;
   			border-radius: 15px;
   			box-shadow: 0 9px #999;
@@ -23,14 +23,29 @@
 
 		.buttonEffect:hover 
 		{
-			background-color: #3e8e41
+			background-color: #003399;
 		}
 
 		.buttonEffect:active 
 		{
-  			background-color: #3e8e41;
+  			background-color: #003399;
   			box-shadow: 0 5px #666;
   			transform: translateY(4px);
+		}
+		.buttonUnPressed
+		{
+  			display: inline-block;
+  			padding: 7px 15px;
+  			font-size: 17px;
+  			cursor: pointer;
+  			text-align: center;
+  			text-decoration: none;
+  			outline: none;
+  			color: #fff;
+  			background-color: #33cc33;
+  			border: none;
+  			border-radius: 15px;
+  			box-shadow: 0 9px #999;
 		}
 		.buttonPressed
 		{
@@ -42,7 +57,7 @@
   			text-decoration: none;
   			outline: none;
   			color: #fff;
-  			background-color: #3e8e41;
+  			background-color: #006600;
   			box-shadow: 0 5px #666;
   			transform: translateY(4px);
   			border: none;
@@ -176,10 +191,25 @@
 				<h4> <%= @mensajeWumpus %></h4>	
 			</form>
 			<form method="post" action="/pressMovement">
-				<button class="buttonPressed" type="submit" name="pressMovement">Movimiento</button>
+				<% if @pressMo %>
+						<button class="buttonPressed" type="submit" name="pressMovement">Movimiento</button>
+				<% else %>
+						<button class="buttonUnPressed" type="submit" name="pressMovement">Movimiento</button>
+				<% end %>
 			</form>
 			<form method="post" action="/pressShootArrow">
-				<button class="buttonPressed" type="submit" name="pressShootArrow">Disparar Flecha</button>
+				<% if @pressAr %>
+					<button class="buttonPressed" type="submit" name="pressShootArrow">Disparar Flecha</button>
+				<% else %>
+					<button class="buttonUnPressed" type="submit" name="pressShootArrow">Disparar Flecha</button>
+				<% end %>
+			</form>
+			<form method="post" action="/pressUseSpray">
+				<% if @pressSp %>
+					<button class="buttonPressed" type="submit" name="pressShootSpray">Usar Spray</button>
+				<% else %>
+					<button class="buttonUnPressed" type="submit" name="pressShootSpay">Usar Spray</button>
+				<% end %>
 			</form>
 		</div>
 	<% else %>	

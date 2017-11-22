@@ -28,6 +28,9 @@ get '/play' do
 		@mensajeWumpus = "El Wumpus esta activo"
 		@nombreBoton = "Bloquear movimiento"
 	end
+	@pressMo=$pressMov
+	@pressAr=$pressSA
+	@pressSp=$pressSpray
 	erb :console	
 end	
 get '/configureMap' do
@@ -44,6 +47,9 @@ post '/configureMap' do
 	$startWumpus.generateNeighbors()
 	$character=Character.new($startWumpus.getCavern(0,0))
     @mensaje="Bienvenido al Mapa Personalizado"
+    $pressMov=true
+	$pressSA=false
+	$pressSpray=false
 	erb :defaultMap
 end
 post '/toNorth' do	
@@ -123,6 +129,7 @@ post '/shootToTop' do
 	if $wumpus.wumpusAlive
 		@caveaux.assignArrow()
 	end
+	checkMovement
 	redirect "/play"
 end
 post '/shootToBottom' do
@@ -140,6 +147,7 @@ post '/shootToBottom' do
 	if $wumpus.wumpusAlive
 		@caveaux.assignArrow()
 	end
+	checkMovement
 	redirect "/play"
 end
 
@@ -157,6 +165,7 @@ post '/shootToLeft' do
 	if $wumpus.wumpusAlive
 		@caveaux.assignArrow()
 	end
+	checkMovement
 	redirect "/play"
 end
 post '/shootToRight' do
@@ -174,6 +183,7 @@ post '/shootToRight' do
 	if $wumpus.wumpusAlive
 		@caveaux.assignArrow()
 	end
+	checkMovement
 	redirect "/play"
 end
 
@@ -185,5 +195,45 @@ post '/start' do
 	$character=Character.new($startWumpus.getCavern(0,0))
 	$wumpus=Wumpus.new($startWumpus.getCavern(5,5))
     @mensaje="Bienvenido al Mapa por Defecto"
+    $pressMov=true
+	$pressSA=false
+	$pressSpray=false
 	erb :defaultMap
+end
+
+post '/pressMovement' do
+	checkMovement
+	redirect "/play"
+end
+
+def checkMovement
+	if($pressMov)
+		$pressMov=false
+	else
+		$pressMov=true
+		$pressSA=false
+		$pressSpray=false
+	end
+end
+post '/pressShootArrow' do
+	if($pressSA)
+		$pressSA=false
+		checkMovement
+	else
+		$pressSA=true
+		$pressMov=false
+		$pressSpray=false
+	end
+	redirect "/play"
+end
+post '/pressUseSpray' do
+	if($pressSpray)
+		$pressSpray=false
+		checkMovement
+	else
+		$pressSpray=true
+		$pressMov=false
+		$pressSA=false
+	end
+	redirect "/play"
 end
