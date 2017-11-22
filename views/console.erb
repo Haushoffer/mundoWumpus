@@ -128,13 +128,11 @@
 				<div id="c-stick">
 					<label>Spray: <%= @numberOfSpray %></label>
 				</div>
-			
-			
-			
-			
-			
 			</div>
-		
+			<form method="post" action="/lockWumpus">
+				<button type="submit" name="Bloquear_Wumpus">Bloquear Movimiento Wumpus</button>
+				<h4> <%= @mensajeWumpus %></h4>	
+			</form>
 		</div>
 	<% else %>	
 		<div id="container">
@@ -167,10 +165,5 @@
 				</div>
 			</div>
 		</div>
-
-
-
 	<% end %>
-	
-
 </html>
