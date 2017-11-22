@@ -98,24 +98,54 @@
 			
 				<div id="direc" >
 					<% if @north %>
-						<form method="post" action="/toNorth">
-						<button type="submit" name="Norte">Norte</button>
-						</form>
+						<% if @numberOfArrows>=1 && @pressAr%>
+								<form method="post" action="/shootToTop">
+									<button type="submit" name="shootTop">^</button>
+								</form>
+						<% elsif @pressMo %>		
+							<form method="post" action="/toNorth">
+								<button type="submit" name="Norte">Norte</button>
+							</form>
+						<% elsif @pressSp %>	
+
+						<%end%>
 					<% end %>
 					<% if @south %>
-						<form method="post" action="/toSouth">
-						<button type="submit" name="Sur">Sur</button>
-						</form>
+						<% if @numberOfArrows>=1 && @pressAr%>
+							<form method="post" action="/shootToBottom">
+								<button type="submit" name="shootBot">v</button>
+							</form>
+						<% elsif @pressMo %>
+							<form method="post" action="/toSouth">
+								<button type="submit" name="Sur">Sur</button>
+							</form>
+						<% elsif @pressSp %>		
+						<% end %>
 					<% end %>
 					<% if @east %>
-						<form method="post" action="/toEast">
-						<button type="submit" name="Este">Este</button>
-						</form>
+						<% if @numberOfArrows>=1 && @pressAr%>
+							<form method="post" action="/shootToRight">
+								<button type="submit" name="shootRight">></button>
+							</form>
+						<% elsif @pressMo %>
+							<form method="post" action="/toEast">
+								<button type="submit" name="Este">Este</button>
+							</form>
+						<% elsif @pressSp %>
+						<% end %>
+
 					<% end %>
 					<% if @west %>
-						<form method="post" action="/toWest">
-						<button type="submit" name="Oeste">Oeste</button>
-						</form>
+						<% if @numberOfArrows>=1 && @pressAr%>
+							<form method="post" action="/shootToLeft">
+								<button type="submit" name="shootLeft"><</button>
+							</form>
+						<% elsif @pressMo %>
+							<form method="post" action="/toWest">
+								<button type="submit" name="Oeste">Oeste</button>
+							</form>
+						<% elsif @pressSp %>
+						<% end %>
 					<% end %>	
 				</div>
 			
