@@ -6,7 +6,7 @@ class Wumpus
         @caveOfPosition.hostWumpus
         setSmellAround(true)
         @wumpusAlive = true
-        @isLock = true
+        @isLock = false
     end
     
     def setSmellAround(value)
