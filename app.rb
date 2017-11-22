@@ -101,7 +101,7 @@ post '/shootToTop' do
 	while (!@caveaux.topNeighbor.nil? && $wumpus.wumpusAlive) do
 		if(@caveaux.topNeighbor.isWumpusHere)
 			$wumpus.killWumpus
-			$character.setCoins(10)
+			$character.setCoins(100)
 			
 		else	
 			@caveaux = @caveaux.topNeighbor
@@ -118,7 +118,7 @@ post '/shootToBottom' do
 	while (!@caveaux.bottomNeighbor.nil? && $wumpus.wumpusAlive) do
 		if(@caveaux.bottomNeighbor.isWumpusHere)
 			$wumpus.killWumpus
-			$character.setCoins(10)
+			$character.setCoins(100)
 			
 		else	
 			@caveaux = @caveaux.bottomNeighbor
@@ -136,7 +136,7 @@ post '/shootToLeft' do
 	while (!@caveaux.leftNeighbor.nil? && $wumpus.wumpusAlive) do
 		if(@caveaux.leftNeighbor.isWumpusHere)
 			$wumpus.killWumpus
-			$character.setCoins(10)
+			$character.setCoins(100)
 		else	
 			@caveaux = @caveaux.leftNeighbor
 		end
@@ -152,7 +152,7 @@ post '/shootToRight' do
 	while (!@caveaux.rightNeighbor.nil? && $wumpus.wumpusAlive) do
 		if(@caveaux.rightNeighbor.isWumpusHere)
 			$wumpus.killWumpus
-			$character.setCoins(10)
+			$character.setCoins(100)
 			
 		else	
 			@caveaux = @caveaux.rightNeighbor
@@ -161,6 +161,36 @@ post '/shootToRight' do
 	if $wumpus.wumpusAlive
 		@caveaux.assignArrow()
 	end
+	redirect "/play"
+end
+post '/sprayToTop' do
+	$character.useSpray()
+	@caveaux=$character.caveOfPosition
+
+
+	redirect "/play"
+end
+post '/sprayToBottom' do
+	$character.useSpray()
+	@caveaux=$character.caveOfPosition
+
+
+
+	redirect "/play"
+end
+
+post '/sprayToLeft' do
+	$character.useSpray()
+	@caveaux=$character.caveOfPosition
+	
+	redirect "/play"
+end
+post '/sprayToRight' do
+	$character.useSpray()
+	@caveaux=$character.caveOfPosition
+	
+
+
 	redirect "/play"
 end
 

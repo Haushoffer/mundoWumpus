@@ -78,6 +78,10 @@
 						<% end %>
 						</div>
 					</div>
+					
+				</div>
+				<div id="c-stick">
+						<label>Monedas: <%=@monedas %></label>
 				</div>
 			
 				<div id="c-stick">
@@ -128,6 +132,47 @@
 				<div id="c-stick">
 					<label>Spray: <%= @numberOfSpray %></label>
 				</div>
+				<div id="color-button-holder">
+					<div id="blue-btn">
+						<% if @north %>
+							<% if @numberOfSpray>=1 %>
+								<form method="post" action="/sprayToTop">
+									<button type="submit" name="sprayToTop">^</button>
+								</form>
+							<%end%>
+						<% end %>
+					</div>
+				
+					<div id="green-btn">
+						<% if @west %>
+							<% if @numberOfSpray>=1 %>
+								<form method="post" action="/sprayToLeft">
+									<button type="submit" name="sprayToLeft"><</button>
+								</form>
+							<% end %>
+						<% end %>
+					</div>
+				
+					<div id="red-btn">
+						<% if @south %>
+							<% if @numberOfSpray>=1 %>
+									<form method="post" action="/sprayToBottom">
+										<button type="submit" name="sprayToBot">v</button>
+									</form>
+							<% end %>
+						<% end %>
+					</div>
+				
+					<div id="yellow-btn">
+						<% if @east %>
+							<% if @numberOfSpray>=1 %>
+								<form method="post" action="/sprayToRight">
+									<button type="submit" name="sprayToRight">></button>
+								</form>
+							<% end %>
+						<% end %>
+					</div>
+				</div>
 			
 			
 			
@@ -161,9 +206,6 @@
 							
 						</div>
 					</div>
-				</div>
-				<div id="c-stick">
-					<label>Monedas: <%=@monedas %></label>
 				</div>
 			</div>
 		</div>
