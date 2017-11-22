@@ -24,8 +24,10 @@ get '/play' do
 	@whirr=$character.caveOfPosition.whir
 	if($wumpus.isLock)
 		@mensajeWumpus = "El Wumpus esta quieto"
+		@nombreBoton = "Desbloquear movimiento"
 	else
 		@mensajeWumpus = "El Wumpus esta activo"
+		@nombreBoton = "Bloquear movimiento"
 	end
 	erb :console
 	
