@@ -1,20 +1,14 @@
 require 'sinatra'
 require('./lib/cavern.rb')
 require('./lib/character.rb')
-
+require('./lib/wumpus.rb')
+require('./lib/bats.rb')
 get '/' do	
-<<<<<<< HEAD
-	$startWumpus=Cavern.new(5,5)
-=======
-	$startWumpus=Cavern.new(3,3)
->>>>>>> 3d02557f30bdcdcdf9140883d3809070200c49ce
-	$startWumpus.generateNeighbors()
-	$character=Character.new($startWumpus.getCavern(0,0))
 	$m=" "
+	
 	erb :start
 end	
-
-get '/play' do	
+get '/play' do
 	@mensaje=$character.getNumberOfCavePositionated()
 	$m=$m + ""
 	@north=$character.canGoNorth()
@@ -23,84 +17,259 @@ get '/play' do
 	@west=$character.canGoWest()
 	@smell=$character.caveOfPosition.smell
 	@numberOfArrows=$character.numberOfArrows
-	@wumpusvivo = $startWumpus.wumpuslife
-	erb :console
+	@numberOfSpray=$character.numberOfSpray
+	@caught = $wumpus.wumpusAlive && ($character.caveOfPosition.caveNumber == $wumpus.caveOfPosition.caveNumber)
+	@wumpusvivo = $wumpus.wumpusAlive
+	@monedas = $character.coins
+	@whirr=$character.caveOfPosition.whir
+	if($wumpus.isLock)
+		@mensajeWumpus = "El Wumpus esta quieto"
+		@nombreBoton = "Desbloquear movimiento"
+	else
+		@mensajeWumpus = "El Wumpus esta activo"
+		@nombreBoton = "Bloquear movimiento"
+	end
+	@pressMo=$pressMov
+	@pressAr=$pressSA
+	@pressSp=$pressSpray
+	erb :console	
 end	
-
+get '/configureMap' do
+	erb :configureMap
+end
+post '/configureMap' do
+	$numberOfCaves = params[:numberOfCaves].to_i
+	if($numberOfCaves==nil or $numberOfCaves<=0)
+		$startWumpus=Cavern.new(10,10)
+	else
+		$numberOfCaves=$numberOfCaves/2
+		$startWumpus=Cavern.new($numberOfCaves,$numberOfCaves)
+	end
+	$startWumpus.generateNeighbors()
+	$character=Character.new($startWumpus.getCavern(0,0))
+    @mensaje="Bienvenido al Mapa Personalizado"
+    $pressMov=true
+	$pressSA=false
+	$pressSpray=false
+	erb :defaultMap
+end
 post '/toNorth' do	
-	$startWumpus.moveWumpusRandomly
+	$wumpus.moveWumpusRandomly
 	$character.moveNorth()
-	
-	$m="El wumpus se movio"
+	if($character.withBats)
+		$character.setPos($startWumpus.getCavern(0,0))
+		$mensajeActual="los murcielagos de devolvieron al inicio"
+	else
+		$mensajeActual=""
+	end
+	$m=""
 	redirect "/play"
 	
 end
-
 post '/toSouth' do
-	$startWumpus.moveWumpusRandomly	
+	$wumpus.moveWumpusRandomly	
 	$character.moveSouth()
-	
-	$m="El wumpus se movio"
+	if($character.withBats)
+		$character.setPos($startWumpus.getCavern(0,0))
+		$mensajeActual="los murcielagos Te devolvieron al inicio"
+	else
+		$mensajeActual=""
+	end
+	$m=""
 	redirect "/play"
 	
 end
-
 post '/toEast' do	
-	$startWumpus.moveWumpusRandomly
+	$wumpus.moveWumpusRandomly
 	$character.moveEast()
-	
-	$m="El wumpus se movio"
+	if($character.withBats)
+		$character.setPos($startWumpus.getCavern(0,0))
+		$mensajeActual="los murcielagos de devolvieron al inicio"
+	else
+		$mensajeActual=""
+	end
+	$m=""
 	redirect "/play"
 	
 end
 
 post '/toWest' do	
-	$startWumpus.moveWumpusRandomly
+	$wumpus.moveWumpusRandomly
 	$character.moveWest()
-	
-	$m="El wumpus se movio"
+	if($character.withBats)
+		$character.setPos($startWumpus.getCavern(0,0))
+		$mensajeActual="los murcielagos de devolvieron al inicio"
+	else
+		$mensajeActual=""
+	end
+	$m=""
 	redirect "/play"
 	
 end
+post '/lockWumpus' do	
+	if($wumpus.isLock)
+		$wumpus.unlock
+	else
+		$wumpus.lock
+	end
+	redirect "/play"
+end
 post '/shootToTop' do
 	$character.shootArrow()
-	if($character.caveOfPosition.topNeighbor.isWumpusHere)
-		$startWumpus.killWumpus
-		
-	else	
-		$character.caveOfPosition.topNeighbor.assignArrow()
+	@caveaux=$character.caveOfPosition
+	while (!@caveaux.topNeighbor.nil? && $wumpus.wumpusAlive) do
+		if(@caveaux.topNeighbor.isWumpusHere)
+			$wumpus.killWumpus
+			$character.coins=$character.coins+100
+			
+		else	
+			@caveaux = @caveaux.topNeighbor
+		end
 	end
+	if $wumpus.wumpusAlive
+		@caveaux.assignArrow()
+	end
+	checkMovement
 	redirect "/play"
 end
 post '/shootToBottom' do
 	$character.shootArrow()
-	if($character.caveOfPosition.bottomNeighbor.isWumpusHere)
-		$startWumpus.killWumpus
-	else	
-		$character.caveOfPosition.bottomNeighbor.assignArrow()
+	@caveaux=$character.caveOfPosition
+	while (!@caveaux.bottomNeighbor.nil? && $wumpus.wumpusAlive) do
+		if(@caveaux.bottomNeighbor.isWumpusHere)
+			$wumpus.killWumpus
+			$character.coins=$character.coins+100
+			
+		else	
+			@caveaux = @caveaux.bottomNeighbor
+		end
 	end
+	if $wumpus.wumpusAlive
+		@caveaux.assignArrow()
+	end
+	checkMovement
 	redirect "/play"
 end
+
 post '/shootToLeft' do
 	$character.shootArrow()
-	if($character.caveOfPosition.leftNeighbor.isWumpusHere)
-		$startWumpus.killWumpus
-	else	
-		$character.caveOfPosition.leftNeighbor.assignArrow()
+	@caveaux=$character.caveOfPosition
+	while (!@caveaux.leftNeighbor.nil? && $wumpus.wumpusAlive) do
+		if(@caveaux.leftNeighbor.isWumpusHere)
+			$wumpus.killWumpus
+			$character.coins=$character.coins+100
+		else	
+			@caveaux = @caveaux.leftNeighbor
+		end
 	end
+	if $wumpus.wumpusAlive
+		@caveaux.assignArrow()
+	end
+	checkMovement
 	redirect "/play"
 end
 post '/shootToRight' do
 	$character.shootArrow()
-	if($character.caveOfPosition.rightNeighbor.isWumpusHere)
-		$startWumpus.killWumpus
-	else	
-		$character.caveOfPosition.rightNeighbor.assignArrow()
+	@caveaux=$character.caveOfPosition
+	while (!@caveaux.rightNeighbor.nil? && $wumpus.wumpusAlive) do
+		if(@caveaux.rightNeighbor.isWumpusHere)
+			$wumpus.killWumpus
+			$character.coins=$character.coins+100
+			
+		else	
+			@caveaux = @caveaux.rightNeighbor
+		end
+	end
+	if $wumpus.wumpusAlive
+		@caveaux.assignArrow()
+	end
+	checkMovement
+	redirect "/play"
+end
+post '/sprayToTop' do
+	$character.useSpray()
+	@caveaux=$character.caveOfPosition
+	if(@caveaux.topNeighbor.isBatHere)
+		$character.coins=$character.coins+10
+		@caveaux.bottomNeighbor.stunTheBat()
 	end
 	redirect "/play"
 end
-post '/start' do	
-	@mensaje=$startWumpus.getWelcomeMessage()
+post '/sprayToBottom' do
+	$character.useSpray()
+	@caveaux=$character.caveOfPosition
+	if(@caveaux.bottomNeighbor.isBatHere)
+		$character.coins=$character.coins+10
+		@caveaux.bottomNeighbor.stunTheBat()
+	end
+	redirect "/play"
+end
+
+post '/sprayToLeft' do
+	$character.useSpray()
+	@caveaux=$character.caveOfPosition
+	if(@caveaux..leftNeighbor.isBatHere)
+		$character.coins=$character.coins+10
+		@caveaux.bottomNeighbor.stunTheBat()
+	end	
+	redirect "/play"
+end
+post '/sprayToRight' do
+	$character.useSpray()
+	@caveaux=$character.caveOfPosition
+	if(@caveaux.rightNeighbor.isBatHere)
+		$character.coins=$character.coins+10
+		@caveaux.bottomNeighbor.stunTheBat()
+	end
+end
+
+post '/start' do		
+	$startWumpus=Cavern.new(10,10)
+	$startWumpus.generateNeighbors()
+	param= $startWumpus
+	$batriders=Bats.new(param)
+	$character=Character.new($startWumpus.getCavern(0,0))
+	$wumpus=Wumpus.new($startWumpus.getCavern(5,5))
+    @mensaje="Bienvenido al Mapa por Defecto"
+    $pressMov=true
+	$pressSA=false
+	$pressSpray=false
 	erb :defaultMap
 end
 
+post '/pressMovement' do
+	checkMovement
+	redirect "/play"
+end
+
+def checkMovement
+	if($pressMov)
+		$pressMov=false
+	else
+		$pressMov=true
+		$pressSA=false
+		$pressSpray=false
+	end
+end
+post '/pressShootArrow' do
+	if($pressSA)
+		$pressSA=false
+		checkMovement
+	else
+		$pressSA=true
+		$pressMov=false
+		$pressSpray=false
+	end
+	redirect "/play"
+end
+post '/pressUseSpray' do
+	if($pressSpray)
+		$pressSpray=false
+		checkMovement
+	else
+		$pressSpray=true
+		$pressMov=false
+		$pressSA=false
+	end
+	redirect "/play"
+end

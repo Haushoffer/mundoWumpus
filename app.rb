@@ -193,6 +193,7 @@ post '/sprayToTop' do
 		$character.coins=$character.coins+10
 		@caveaux.bottomNeighbor.stunTheBat()
 	end
+	checkMovement
 	redirect "/play"
 end
 post '/sprayToBottom' do
@@ -202,16 +203,18 @@ post '/sprayToBottom' do
 		$character.coins=$character.coins+10
 		@caveaux.bottomNeighbor.stunTheBat()
 	end
+	checkMovement
 	redirect "/play"
 end
 
 post '/sprayToLeft' do
 	$character.useSpray()
 	@caveaux=$character.caveOfPosition
-	if(@caveaux..leftNeighbor.isBatHere)
+	if(@caveaux.leftNeighbor.isBatHere)
 		$character.coins=$character.coins+10
 		@caveaux.bottomNeighbor.stunTheBat()
 	end	
+	checkMovement
 	redirect "/play"
 end
 post '/sprayToRight' do
@@ -221,6 +224,8 @@ post '/sprayToRight' do
 		$character.coins=$character.coins+10
 		@caveaux.bottomNeighbor.stunTheBat()
 	end
+	checkMovement
+	redirect "/play"
 end
 
 post '/start' do		

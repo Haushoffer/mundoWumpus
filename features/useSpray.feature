@@ -10,5 +10,6 @@ Scenario:
 	And pulso el boton de direccion "Este"
 	And pulso el boton de direccion "Sur"
 	And pulso el boton de direccion "Este"
+	And pulso el boton "pressShootSpray"
 	And pulso el boton "sprayBot"
 	Then deberia mostrar la cantidad de "Spray: 0"
