@@ -15,7 +15,7 @@
   			text-decoration: none;
   			outline: none;
   			color: #fff;
-  			background-color: #4CAF50;
+  			background-color: #0066ff;
   			border: none;
   			border-radius: 15px;
   			box-shadow: 0 9px #999;
@@ -23,15 +23,46 @@
 
 		.buttonEffect:hover 
 		{
-			background-color: #3e8e41
+			background-color: #003399;
 		}
 
 		.buttonEffect:active 
 		{
-  			background-color: #3e8e41;
+  			background-color: #003399;
   			box-shadow: 0 5px #666;
   			transform: translateY(4px);
-		}	
+		}
+		.buttonUnPressed
+		{
+  			display: inline-block;
+  			padding: 7px 15px;
+  			font-size: 17px;
+  			cursor: pointer;
+  			text-align: center;
+  			text-decoration: none;
+  			outline: none;
+  			color: #fff;
+  			background-color: #33cc33;
+  			border: none;
+  			border-radius: 15px;
+  			box-shadow: 0 9px #999;
+		}
+		.buttonPressed
+		{
+			display: inline-block;
+  			padding: 7px 15px;
+  			font-size: 17px;
+  			cursor: pointer;
+  			text-align: center;
+  			text-decoration: none;
+  			outline: none;
+  			color: #fff;
+  			background-color: #006600;
+  			box-shadow: 0 5px #666;
+  			transform: translateY(4px);
+  			border: none;
+  			border-radius: 15px;
+		}
 	</style>
 </head>
 
@@ -53,10 +84,6 @@
 		    </div>
 		</nav>
 	</header>
-   
-	      
-	       
-   		
 	<% if @wumpusvivo %> 		
 		<div id="container">
 			<div id="body">
@@ -71,24 +98,54 @@
 			
 				<div id="direc" >
 					<% if @north %>
-						<form method="post" action="/toNorth">
-						<button type="submit" name="Norte">Norte</button>
-						</form>
+						<% if @numberOfArrows>=1 && @pressAr%>
+								<form method="post" action="/shootToTop">
+									<button type="submit" name="shootTop">^</button>
+								</form>
+						<% elsif @pressMo %>		
+							<form method="post" action="/toNorth">
+								<button type="submit" name="Norte">Norte</button>
+							</form>
+						<% elsif @pressSp %>	
+
+						<%end%>
 					<% end %>
 					<% if @south %>
-						<form method="post" action="/toSouth">
-						<button type="submit" name="Sur">Sur</button>
-						</form>
+						<% if @numberOfArrows>=1 && @pressAr%>
+							<form method="post" action="/shootToBottom">
+								<button type="submit" name="shootBot">v</button>
+							</form>
+						<% elsif @pressMo %>
+							<form method="post" action="/toSouth">
+								<button type="submit" name="Sur">Sur</button>
+							</form>
+						<% elsif @pressSp %>		
+						<% end %>
 					<% end %>
 					<% if @east %>
-						<form method="post" action="/toEast">
-						<button type="submit" name="Este">Este</button>
-						</form>
+						<% if @numberOfArrows>=1 && @pressAr%>
+							<form method="post" action="/shootToRight">
+								<button type="submit" name="shootRight">></button>
+							</form>
+						<% elsif @pressMo %>
+							<form method="post" action="/toEast">
+								<button type="submit" name="Este">Este</button>
+							</form>
+						<% elsif @pressSp %>
+						<% end %>
+
 					<% end %>
 					<% if @west %>
-						<form method="post" action="/toWest">
-						<button type="submit" name="Oeste">Oeste</button>
-						</form>
+						<% if @numberOfArrows>=1 && @pressAr%>
+							<form method="post" action="/shootToLeft">
+								<button type="submit" name="shootLeft"><</button>
+							</form>
+						<% elsif @pressMo %>
+							<form method="post" action="/toWest">
+								<button type="submit" name="Oeste">Oeste</button>
+							</form>
+						<% elsif @pressSp %>
+						<% end %>
 					<% end %>	
 				</div>
 			
@@ -113,48 +170,8 @@
 				<div id="c-stick">
 					<label>Flechas: <%= @numberOfArrows %></label>
 				</div>
-			
-				<div id="color-button-holder">
-					<div id="blue-btn">
-						<% if @north %>
-							<% if @numberOfArrows>=1 %>
-								<form method="post" action="/shootToTop">
-									<button type="submit" name="shootTop">^</button>
-								</form>
-							<%end%>
-						<% end %>
-					</div>
-				
-					<div id="green-btn">
-						<% if @west %>
-							<% if @numberOfArrows>=1 %>
-								<form method="post" action="/shootToLeft">
-									<button type="submit" name="shootLeft"><</button>
-								</form>
-							<% end %>
-						<% end %>
-					</div>
-				
-					<div id="red-btn">
-						<% if @south %>
-							<% if @numberOfArrows>=1 %>
-									<form method="post" action="/shootToBottom">
-										<button type="submit" name="shootBot">v</button>
-									</form>
-							<% end %>
-						<% end %>
-					</div>
-				
-					<div id="yellow-btn">
-						<% if @east %>
-							<% if @numberOfArrows>=1 %>
-								<form method="post" action="/shootToRight">
-									<button type="submit" name="shootRight">></button>
-								</form>
-							<% end %>
-						<% end %>
-					</div>
-				</div>
+				<br>
+				<br>
 				<div id="c-stick">
 					<label>Spray: <%= @numberOfSpray %></label>
 				</div>
@@ -162,6 +179,27 @@
 			<form method="post" action="/lockWumpus">
 				<button class="buttonEffect" type="submit" name="Bloquear_Wumpus"><%= @nombreBoton %></button>
 				<h4> <%= @mensajeWumpus %></h4>	
+			</form>
+			<form method="post" action="/pressMovement">
+				<% if @pressMo %>
+						<button class="buttonPressed" type="submit" name="pressMovement">Movimiento</button>
+				<% else %>
+						<button class="buttonUnPressed" type="submit" name="pressMovement">Movimiento</button>
+				<% end %>
+			</form>
+			<form method="post" action="/pressShootArrow">
+				<% if @pressAr %>
+					<button class="buttonPressed" type="submit" name="pressShootArrow">Disparar Flecha</button>
+				<% else %>
+					<button class="buttonUnPressed" type="submit" name="pressShootArrow">Disparar Flecha</button>
+				<% end %>
+			</form>
+			<form method="post" action="/pressUseSpray">
+				<% if @pressSp %>
+					<button class="buttonPressed" type="submit" name="pressShootSpray">Usar Spray</button>
+				<% else %>
+					<button class="buttonUnPressed" type="submit" name="pressShootSpay">Usar Spray</button>
+				<% end %>
 			</form>
 		</div>
 	<% else %>	
