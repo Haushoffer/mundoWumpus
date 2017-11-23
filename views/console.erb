@@ -84,7 +84,7 @@
 		    </div>
 		</nav>
 	</header>
-	<% if @wumpusvivo %> 		
+	<% if @wumpusvivo && !@caught%> 		
 		<div id="container">
 			<div id="body">
 				<br>
@@ -219,8 +219,36 @@
 					<button class="buttonUnPressed" type="submit" id="pressShootSpray">Usar Spray</button>
 				<% end %>
 			</form>
-	<% else %>	
+	<% elsif @caught%>	
 		<div id="container">
+			<div id="body">
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>	
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>	
+				
+				<div id="bottom-screen-holder">
+					<div id="bottom-screen">
+						<div id="console">
+							<h2> El Wumpus te atrapo!!!! PERDISTE!</h2>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	<% else %>	
+			<div id="container">
 			<div id="body">
 				<br>
 				<br>
