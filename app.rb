@@ -3,10 +3,17 @@ require('./lib/cavern.rb')
 require('./lib/character.rb')
 require('./lib/wumpus.rb')
 require('./lib/bats.rb')
+require('./lib/TMap.rb')
+require('./lib/Umap.rb')
 get '/' do	
 	$m=" "
 	
 	erb :start
+end	
+get '/mostrarMapas' do	
+	$m=" "
+	
+	erb :mapas
 end	
 get '/play' do
 	@mensaje=$character.getNumberOfCavePositionated()
@@ -244,6 +251,28 @@ post '/start' do
 	$pressSA=false
 	$pressSpray=false
 	erb :defaultMap
+end
+get '/mapaT' do	
+	$startWumpus=TMap.new()
+	$startWumpus.generateNeighbors()
+	$character=Character.new($startWumpus.getCavern(0,0))
+	$wumpus=Wumpus.new($startWumpus.getCavern(4,4))
+	$wumpus.isLock=true
+	$pressMov=true
+	$pressSA=false
+	$pressSpray=false
+	redirect "play"
+end
+get '/mapaU' do	
+	$startWumpus=UMap.new()
+	$startWumpus.generateNeighbors()
+	$character=Character.new($startWumpus.getCavern(0,0))
+	$wumpus=Wumpus.new($startWumpus.getCavern(7,4))
+	$wumpus.isLock=true
+	$pressMov=true
+	$pressSA=false
+	$pressSpray=false
+	redirect "play"
 end
 post '/testStart' do
 	$startWumpus=Cavern.new(10,10)
