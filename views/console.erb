@@ -106,7 +106,7 @@
 								</form>
 						<% elsif @pressMo %>		
 							<form method="post" action="/toNorth">
-								<button  class="button2" type="submit" name="Norte">^</button>
+								<button  class="button2" type="submit" id="Norte">^</button>
 							</form>
 						<% elsif @numberOfSpray>=1 && @pressSp %>	
 							<form method="post" action="/sprayToTop">
@@ -124,7 +124,7 @@
 							</form>
 						<% elsif @pressMo %>
 							<form method="post" action="/toSouth">
-								<button class="red-btn" type="submit" name="Sur">v</button>
+								<button class="red-btn" type="submit" id="Sur">v</button>
 							</form>
 						<% elsif @numberOfSpray>=1 && @pressSp %>
 							<form method="post" action="/sprayToBottom">
@@ -142,7 +142,7 @@
 							</form>
 						<% elsif @pressMo %>
 							<form method="post" action="/toEast">
-								<button class="yellow-btn" type="submit" name="Este">></button>
+								<button class="yellow-btn" type="submit" id="Este">></button>
 							</form>
 						<% elsif @numberOfSpray>=1 && @pressSp %>
 							<form method="post" action="/sprayToRight">
@@ -160,7 +160,7 @@
 							</form>
 						<% elsif @pressMo %>
 							<form method="post" action="/toWest">
-								<button class="green-btn" type="submit" name="Oeste"><</button>
+								<button class="green-btn" type="submit" id="Oeste"><</button>
 							</form>
 						<% elsif @numberOfSpray>=1 && @pressSp %>
 							<form method="post" action="/sprayToLeft">
