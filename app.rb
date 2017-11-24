@@ -7,7 +7,6 @@ require('./lib/TMap.rb')
 require('./lib/Umap.rb')
 get '/' do	
 	$m=" "
-	
 	erb :start
 end	
 get '/mostrarMapas' do	
