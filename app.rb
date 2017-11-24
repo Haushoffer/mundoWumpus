@@ -5,9 +5,9 @@ require('./lib/wumpus.rb')
 require('./lib/bats.rb')
 require('./lib/TMap.rb')
 require('./lib/Umap.rb')
+class App < Sinatra::Base
 get '/' do	
 	$m=" "
-	
 	erb :start
 end	
 get '/mostrarMapas' do	
@@ -324,4 +324,5 @@ post '/pressUseSpray' do
 		$pressSA=false
 	end
 	redirect "/play"
+end
 end
