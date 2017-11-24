@@ -65,7 +65,7 @@ post '/toNorth' do
 	$character.moveNorth()
 	if($character.withBats)
 		$character.setPos($startWumpus.getCavern(0,0))
-		$mensajeActual="los murcielagos de devolvieron al inicio"
+		$mensajeActual="los murcielagos te devolvieron al inicio"
 	else
 		$mensajeActual=""
 	end
@@ -78,7 +78,7 @@ post '/toSouth' do
 	$character.moveSouth()
 	if($character.withBats)
 		$character.setPos($startWumpus.getCavern(0,0))
-		$mensajeActual="los murcielagos Te devolvieron al inicio"
+		$mensajeActual="los murcielagos te devolvieron al inicio"
 	else
 		$mensajeActual=""
 	end
@@ -91,7 +91,7 @@ post '/toEast' do
 	$character.moveEast()
 	if($character.withBats)
 		$character.setPos($startWumpus.getCavern(0,0))
-		$mensajeActual="los murcielagos de devolvieron al inicio"
+		$mensajeActual="los murcielagos te devolvieron al inicio"
 	else
 		$mensajeActual=""
 	end
@@ -105,7 +105,7 @@ post '/toWest' do
 	$character.moveWest()
 	if($character.withBats)
 		$character.setPos($startWumpus.getCavern(0,0))
-		$mensajeActual="los murcielagos de devolvieron al inicio"
+		$mensajeActual="los murcielagos te devolvieron al inicio"
 	else
 		$mensajeActual=""
 	end
