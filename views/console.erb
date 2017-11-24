@@ -206,17 +206,21 @@
 				<% end %>
 			</form>
 			<form method="post" action="/pressShootArrow">
-				<% if @pressAr %>
-					<button class="buttonPressed" type="submit" name="pressShootArrow">Disparar Flecha</button>
-				<% else %>
-					<button class="buttonUnPressed" type="submit" name="pressShootArrow">Disparar Flecha</button>
+				<% if @numberOfArrows>=1%>
+					<% if @pressAr%>
+						<button class="buttonPressed" type="submit" name="pressShootArrow">Disparar Flecha</button>
+					<% else %>
+						<button class="buttonUnPressed" type="submit" name="pressShootArrow">Disparar Flecha</button>
+					<% end %>
 				<% end %>
 			</form>
 			<form method="post" action="/pressUseSpray">
-				<% if @pressSp %>
-					<button class="buttonPressed" type="submit" id="pressShootSpray">Usar Spray</button>
-				<% else %>
-					<button class="buttonUnPressed" type="submit" id="pressShootSpray">Usar Spray</button>
+				<% if @numberOfSpray>=1%>
+					<% if @pressSp%>
+						<button class="buttonPressed" type="submit" id="pressShootSpray">Usar Spray</button>
+					<% else %>
+						<button class="buttonUnPressed" type="submit" id="pressShootSpray">Usar Spray</button>
+					<% end %>
 				<% end %>
 			</form>
 	<% elsif @caught%>	
