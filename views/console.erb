@@ -96,66 +96,80 @@
 				<br>
 				<br>
 			
-				<div id="direc" >
+				<div id="color-button-holder" >
 					<% if @north %>
 						<% if @numberOfArrows>=1 && @pressAr%>
 								<form method="post" action="/shootToTop">
-									<button type="submit" name="shootTop">^</button>
+									
+									<button  class="button2" type="submit" name="shootTop">^</button>
+									
 								</form>
 						<% elsif @pressMo %>		
 							<form method="post" action="/toNorth">
-								<button type="submit" name="Norte">Norte</button>
+								<button  class="button2" type="submit" name="Norte">^</button>
 							</form>
 						<% elsif @numberOfSpray>=1 && @pressSp %>	
 							<form method="post" action="/sprayToTop">
-								<button type="submit" name="sprayTop">^</button>
+								<button class="button2"type="submit" name="sprayTop">^</button>
 							</form>
 						<%end%>
+					<% else %>
+						<div class="button2">
+						</div>	
 					<% end %>
 					<% if @south %>
 						<% if @numberOfArrows>=1 && @pressAr%>
 							<form method="post" action="/shootToBottom">
-								<button type="submit" name="shootBot">v</button>
+								<button class="red-btn" type="submit" name="shootBot">v</button>
 							</form>
 						<% elsif @pressMo %>
 							<form method="post" action="/toSouth">
-								<button type="submit" name="Sur">Sur</button>
+								<button class="red-btn" type="submit" name="Sur">v</button>
 							</form>
 						<% elsif @numberOfSpray>=1 && @pressSp %>
 							<form method="post" action="/sprayToBottom">
-								<button type="submit" id="sprayBot">v</button>
+								<button class="red-btn" type="submit" id="sprayBot">v</button>
 							</form>		
 						<% end %>
+					<% else %>
+						<div class="red-btn">
+						</div>
 					<% end %>
 					<% if @east %>
 						<% if @numberOfArrows>=1 && @pressAr%>
 							<form method="post" action="/shootToRight">
-								<button type="submit" name="shootRight">></button>
+								<button class="yellow-btn" type="submit" name="shootRight">></button>
 							</form>
 						<% elsif @pressMo %>
 							<form method="post" action="/toEast">
-								<button type="submit" name="Este">Este</button>
+								<button class="yellow-btn" type="submit" name="Este">></button>
 							</form>
 						<% elsif @numberOfSpray>=1 && @pressSp %>
 							<form method="post" action="/sprayToRight">
-								<button type="submit" name="sprayRight">></button>
+								<button class="yellow-btn" type="submit" name="sprayRight">></button>
 							</form>
 						<% end %>
+					<% else %>
+						<div class="yellow-btn">
+						</div>
 					<% end %>
 					<% if @west %>
 						<% if @numberOfArrows>=1 && @pressAr%>
 							<form method="post" action="/shootToLeft">
-								<button type="submit" name="shootLeft"><</button>
+								<button class="green-btn" type="submit" name="shootLeft"><</button>
 							</form>
 						<% elsif @pressMo %>
 							<form method="post" action="/toWest">
-								<button type="submit" name="Oeste">Oeste</button>
+								<button class="green-btn" type="submit" name="Oeste"><</button>
 							</form>
 						<% elsif @numberOfSpray>=1 && @pressSp %>
 							<form method="post" action="/sprayToLeft">
-								<button type="submit" name="sprayLeft"><</button>
+								<button class="green-btn" type="submit" name="sprayLeft"><</button>
 							</form>
 						<% end %>
+					<% else %>
+						<div class="green-btn">
+						</div>	
 					<% end %>	
 				</div>
 			
